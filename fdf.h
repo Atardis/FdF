@@ -13,10 +13,23 @@
 #ifndef FDF_H
 # define FDF_H
 
+#include "libft/includes/libft.h"
+#include <mlx.h>
+
 typedef struct	s_mlxstore
 {
 	void	*mlx;
 	void	*win;
+	int 	x;
+	int 	y;
+	int 	move;
 }				t_mlxstore;
+
+void	ft_up(int keycode, t_mlxstore *MLX);
+void	ft_down(int keycode, t_mlxstore *MLX);
+void	ft_right(int keycode, t_mlxstore *MLX);
+void	ft_left(int keycode, t_mlxstore *MLX);
+
+
 
 #endif

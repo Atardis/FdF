@@ -13,7 +13,8 @@
 NAME=mlx
 FLAG=-lmlx -framework OpenGL -framework Appkit
 
-SRC = 	fdf.c
+SRC = 	fdf.c \
+		fdf_move.c
 
 all: $(NAME)
 

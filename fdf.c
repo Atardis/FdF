@@ -10,35 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "fdf.h"
-#include "libft/includes/libft.h"
 
-int		my_fonct_key(int keycode, t_mlxstore *MLX)
+void	ft_put_key_nb(int keycode)
 {
 	ft_putstr("key event ");
 	ft_putnbr(keycode);
 	ft_putchar('\n');
-	mlx_pixel_put(MLX->mlx, MLX->win, 300, 300, 0x33CC00);
+	ft_putendl("--------------");
+}
+
+int		my_fonct_key(int keycode, t_mlxstore *MLX)
+{
+	ft_put_key_nb(keycode);
 	if (keycode == 53)
+	{
+		ft_putchar('\n');
+		ft_putendl("ESC : Good Bye My Friend");
 		exit(0);
+	}
+	if (keycode == 126)
+		ft_up(keycode, MLX);
+	if (keycode == 125)
+		ft_down(keycode, MLX);
+	if (keycode == 123)
+		ft_left(keycode, MLX);
+	if (keycode == 124)
+		ft_right(keycode, MLX);
 	return (0);
 }
 
 int main()
 {
-	static t_mlxstore	MLX;
-	int x;
-	int y;
+	static 	t_mlxstore	MLX;
+	int 	x;
+	int 	y;
 
+	MLX.x = 449;
+	MLX.y = 449;
+	MLX.move = 100;
+	y = MLX.y;
+	x = MLX.x;
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, 1000, 1000, "Ma Bite");
-	y = 49;
-	while (++y < 150)
+	y = 449;
+	while (++y < 550)
 	{
-		x = 49;
-		while (++x < 150)
-			mlx_pixel_put(MLX.mlx, MLX.win, x, y, 0x00FF00CC);
+		x = 449;
+		while (++x < 550)
+			mlx_pixel_put(MLX.mlx, MLX.win, x, y, 0x00FF6600);
 	}
 	mlx_key_hook(MLX.win, my_fonct_key, &MLX);
 	mlx_loop(MLX.mlx);
