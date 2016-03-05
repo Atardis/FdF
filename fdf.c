@@ -40,12 +40,13 @@ int		my_fonct_key(int keycode, t_mlxstore *MLX)
 	return (0);
 }
 
-int main()
+void	ft_test(int i)
 {
 	static 	t_mlxstore	MLX;
 	int 	x;
 	int 	y;
 
+	(void)i;
 	MLX.x = 449;
 	MLX.y = 449;
 	MLX.move = 100;
@@ -62,5 +63,13 @@ int main()
 	}
 	mlx_key_hook(MLX.win, my_fonct_key, &MLX);
 	mlx_loop(MLX.mlx);
+}
+
+
+
+int main()
+{
+	
+	ft_test(1);
 	return (0);
 }

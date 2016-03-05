@@ -16,6 +16,8 @@
 #include "libft/includes/libft.h"
 #include <mlx.h>
 
+#define BUFF_SIZE 50000
+
 typedef struct	s_mlxstore
 {
 	void	*mlx;
