@@ -29,13 +29,13 @@ int		my_fonct_key(int keycode, t_mlxstore *MLX)
 		ft_putendl("ESC : Good Bye My Friend");
 		exit(0);
 	}
-	if (keycode == 126)
+	if (keycode == UP)
 		ft_up(keycode, MLX);
-	if (keycode == 125)
+	if (keycode == DOWN)
 		ft_down(keycode, MLX);
-	if (keycode == 123)
+	if (keycode == LEFT)
 		ft_left(keycode, MLX);
-	if (keycode == 124)
+	if (keycode == RIGHT)
 		ft_right(keycode, MLX);
 	return (0);
 }

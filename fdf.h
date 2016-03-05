@@ -17,6 +17,10 @@
 #include <mlx.h>
 
 #define BUFF_SIZE 50000
+#define UP 126
+#define DOWN 125
+#define LEFT 123
+#define RIGHT 124
 
 typedef struct	s_mlxstore
 {
