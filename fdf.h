@@ -16,7 +16,7 @@
 #include "libft/includes/libft.h"
 #include <mlx.h>
 
-#define BUFF_SIZE 50000
+#define BUFF_SIZE 600
 #define UP 126
 #define DOWN 125
 #define LEFT 123
