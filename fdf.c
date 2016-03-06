@@ -53,7 +53,7 @@ void	ft_test(int i)
 	y = MLX.y;
 	x = MLX.x;
 	MLX.mlx = mlx_init();
-	MLX.win = mlx_new_window(MLX.mlx, 1000, 1000, "Ma Bite");
+	MLX.win = mlx_new_window(MLX.mlx, 1000, 1000, "Le putain de test");
 	y = 449;
 	while (++y < 550)
 	{
@@ -69,7 +69,6 @@ void	ft_test(int i)
 
 int main()
 {
-	
 	ft_test(1);
 	return (0);
 }

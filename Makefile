@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME=mlx
+NAME=fdf
 FLAG=-lmlx -framework OpenGL -framework Appkit
 
 SRC = 	fdf.c \
@@ -29,6 +29,6 @@ clean:
 fclean: clean
 	@make -C libft fclean
 
-re: clean all
+re: fclean all
 
-.PHONY: all clean re
+.PHONY: all fclean clean re
