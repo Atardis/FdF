@@ -19,10 +19,15 @@ SRC = 	fdf.c \
 all: $(NAME)
 
 $(NAME):
+	@make -C libft
 	gcc -o $(NAME) $(SRC) $(FLAG) libft/libft.a
 
 clean:
+	@make -C libft clean
 	rm -f mlx
+
+fclean: clean
+	@make -C libft fclean
 
 re: clean all
 
