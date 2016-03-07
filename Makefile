@@ -30,7 +30,7 @@ clean:
 
 fclean: clean
 	@make -C libft fclean
-	@echo "\033[33mDestruction du fichier .a libft\t\t | OK |"
+	@echo "\033[33mDestruction du fichier  .a libft\t | OK |"
 	@rm -f $(NAME)
 	@echo "\033[33mDestruction de l'executable fdf\t\t | OK |"
 
