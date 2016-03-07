@@ -14,8 +14,15 @@
 
 void	ft_put_key_nb(int keycode)
 {
-	ft_putstr("key event ");
-	ft_putnbr(keycode);
+	ft_putstr("touche -> ");
+	if (keycode == UP)
+		ft_putchar(94);
+	if (keycode == DOWN)
+		ft_putchar(118);
+	if (keycode == LEFT)
+		ft_putchar(60);
+	if (keycode == RIGHT)
+		ft_putchar(62);
 	ft_putchar('\n');
 	ft_putendl("--------------");
 }
@@ -23,7 +30,7 @@ void	ft_put_key_nb(int keycode)
 int		my_fonct_key(int keycode, t_mlxstore *MLX)
 {
 	ft_put_key_nb(keycode);
-	if (keycode == 53)
+	if (keycode == EXIT)
 	{
 		ft_putchar('\n');
 		ft_putendl("ESC : Good Bye My Friend");

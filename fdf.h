@@ -21,6 +21,7 @@
 #define DOWN 125
 #define LEFT 123
 #define RIGHT 124
+#define EXIT 53
 
 typedef struct	s_mlxstore
 {
