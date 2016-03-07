@@ -29,18 +29,18 @@ void	ft_put_key_nb(int keycode)
 	ft_putendl("--------------");
 }
 
-void	ft_exit(int i)
+void	ft_exit(void)
 {
 	ft_putchar('\n');
 	ft_putendl("ESC : Good Bye My Friend");
-	exit(0);
+	exit(3);
 }
 
 int		my_fonct_key(int keycode, t_mlxstore *MLX)
 {
 	ft_put_key_nb(keycode);
 	if (keycode == EXIT)
-		ft_exit(1);
+		ft_exit();
 	if (keycode == UP)
 		ft_up(keycode, MLX);
 	if (keycode == DOWN)
@@ -77,10 +77,22 @@ void	ft_test(int i)
 	mlx_loop(MLX.mlx);
 }
 
-
-
-int main()
+void		ft_error(char *str)
 {
+	ft_putendl(str);
+}
+
+int main(int argc, char **argv)
+{
+	char	buff[BUFF_SIZE + 1];
+	int		fd;
+	int		read_result;
+	char 	*line;
+
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		ft_error("error");
+	while (get_next_line(fd, &line) > 0)
+		ft_putendl(line);
 	ft_test(1);
 	return (0);
 }

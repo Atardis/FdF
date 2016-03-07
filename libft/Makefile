@@ -66,7 +66,8 @@ SRC = \
 	ft_strjoin.c \
 	ft_strtrim.c \
 	ft_strsplit.c \
-	ft_striteri.c
+	ft_striteri.c \
+	get_next_line.c
 	
 SRCO = $(SRC:.c=.o)
 

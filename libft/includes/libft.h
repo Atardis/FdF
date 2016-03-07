@@ -69,5 +69,6 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					get_next_line(int const fd, char **line);
 
 #endif

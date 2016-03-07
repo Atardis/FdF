@@ -34,9 +34,9 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[33mDestruction de l'executable fdf\t\t | OK |"
 
-yolo:
+line:
 	@echo "\033[33;32m--------------------------------------"
 
-re: fclean yolo all
+re: fclean line all
 
-.PHONY: all  yolo fclean clean re
+.PHONY: all line fclean clean re
