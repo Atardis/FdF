@@ -73,14 +73,14 @@ SRCO = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) $(SRC)
-	ar rc $(NAME) $(SRCO)
-	ranlib $(NAME)
+	@gcc $(FLAGS) $(SRC)
+	@ar rc $(NAME) $(SRCO)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(SRCO)
+	@rm -f $(SRCO)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

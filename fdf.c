@@ -14,7 +14,7 @@
 
 void	ft_put_key_nb(int keycode)
 {
-	ft_putstr("touche -> ");
+	ft_putstr("touche: ");
 	if (keycode == UP)
 		ft_putchar(94);
 	if (keycode == DOWN)
@@ -23,19 +23,24 @@ void	ft_put_key_nb(int keycode)
 		ft_putchar(60);
 	if (keycode == RIGHT)
 		ft_putchar(62);
+	if (keycode == EXIT)
+		ft_putstr("EXIT");
 	ft_putchar('\n');
 	ft_putendl("--------------");
+}
+
+void	ft_exit(int i)
+{
+	ft_putchar('\n');
+	ft_putendl("ESC : Good Bye My Friend");
+	exit(0);
 }
 
 int		my_fonct_key(int keycode, t_mlxstore *MLX)
 {
 	ft_put_key_nb(keycode);
 	if (keycode == EXIT)
-	{
-		ft_putchar('\n');
-		ft_putendl("ESC : Good Bye My Friend");
-		exit(0);
-	}
+		ft_exit(1);
 	if (keycode == UP)
 		ft_up(keycode, MLX);
 	if (keycode == DOWN)
