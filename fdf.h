@@ -22,6 +22,7 @@
 #define DOWN 125
 #define LEFT 123
 #define RIGHT 124
+#define MOUSE_UP 4
 
 #define GREEN 9
 #define BLUE 11
@@ -31,7 +32,6 @@
 typedef struct	s_mlxstore
 {
 	void	*mlx;
-	void	*image;
 	void	*win;
 	int 	x;
 	int 	y;
@@ -46,7 +46,7 @@ void	ft_up(int keycode, t_mlxstore *MLX);
 void	ft_down(int keycode, t_mlxstore *MLX);
 void	ft_right(int keycode, t_mlxstore *MLX);
 void	ft_left(int keycode, t_mlxstore *MLX);
-
-
+void	ft_zoom_up(int keycode, t_mlxstore *MLX);
+void	ft_zoom_down(int keycode, t_mlxstore *MLX);
 
 #endif

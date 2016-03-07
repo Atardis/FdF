@@ -56,6 +56,14 @@ int		my_fonct_key(int keycode, t_mlxstore *MLX)
 	return (0);
 }
 
+// int		my_fonct_mouse(int keycode, t_mlxstore *MLX)
+// {
+// 	ft_put_key_nb(keycode);
+// 	if (keycode == 4)
+		
+// 	return (0);
+// }
+
 void	ft_test(int i)
 {
 	static 	t_mlxstore	MLX;
@@ -79,6 +87,7 @@ void	ft_test(int i)
 			mlx_pixel_put(MLX.mlx, MLX.win, x, y, MLX.color);
 	}
 	mlx_key_hook(MLX.win, my_fonct_key, &MLX);
+	// mlx_mouse_hook(MLX.win, my_fonct_mouse, &MLX);
 	mlx_loop(MLX.mlx);
 }
 
@@ -90,24 +99,15 @@ void		ft_error(char *str)
 
 int main(int argc, char **argv)
 {
-	// int		fd;
-	// char 	*line;
-	// int 	y;
-	// int		x;
-	// int		i;
-	// int		c;
+	int		fd;
+	char 	*line;
 
-	// if (argc != 2)
-	// 	ft_error("Pas le bon nombre d'argument");
-	// if ((fd = open(argv[1], O_RDONLY)) == -1)
-	// 	ft_error("Fichier Inexistant");
-	// y = -1;
-	// while (++y && get_next_line(fd, &line))
-	// {
-	// 	x = -1
-	// 	i = 0;
-	// 	while (++x && c = map_extract(line))
-	// }
-	ft_test(1);
+	if (argc != 2)
+		ft_error("Pas le bon nombre d'argument");
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		ft_error("Fichier Inexistant");
+	while (get_next_line(fd, &line) > 0)
+		ft_putendl(line);
+	//ft_test(1);
 	return (0);
 }

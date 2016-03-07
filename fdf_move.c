@@ -81,3 +81,33 @@ void	ft_right(int keycode, t_mlxstore *MLX)
 			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
 	}
 }
+
+// void	ft_zoom_up(int keycode, t_mlxstore *MLX)
+// {
+// 	int y;
+// 	int x;
+
+// 	MLX->x = MLX->x + 120;
+// 	y = MLX->y - 1;
+// 	while (++y < MLX->y + MLX->move)
+// 	{
+// 		x = MLX->x - 1;
+// 		while (++x < MLX->x + MLX->move)
+// 			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
+// 	}
+// }
+
+// void	ft_zoom_down(int keycode, t_mlxstore *MLX)
+// {
+// 	int y;
+// 	int x;
+
+// 	MLX->x = MLX->x + 120;
+// 	y = MLX->y - 1;
+// 	while (++y < MLX->y + MLX->move)
+// 	{
+// 		x = MLX->x - 1;
+// 		while (++x < MLX->x + MLX->move)
+// 			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
+// 	}
+// }
