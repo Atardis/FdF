@@ -20,23 +20,23 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft
-	@echo "\033[33;32mCompilation de la libft\t\t\tOK"
+	@echo "\033[33;32mCompilation de la libft\t\t\t | OK |"
 	@gcc -o $(NAME) $(SRC) $(FLAG) libft/libft.a
-	@echo "\033[33;32mCompilation du programme Fdf\t\tOK"
+	@echo "\033[33;32mCompilation du programme Fdf\t\t | OK |"
 
 clean:
-	@rm -f $(NAME)
-	@echo "\033[33mDestruction de l'executable fdf\t\tOK"
 	@make -C libft clean
-	@echo "Destruction des fichier .o libft\tOK"
+	@echo "\033[33mDestruction des fichier .o libft\t | OK |"
 
 fclean: clean
 	@make -C libft fclean
-	@echo "Destruction du fichier .a libft\t\tOK"
+	@echo "\033[33mDestruction du fichier .a libft\t\t | OK |"
+	@rm -f $(NAME)
+	@echo "\033[33mDestruction de l'executable fdf\t\t | OK |"
 
 yolo:
 	@echo "\033[33;32m--------------------------------------"
 
 re: fclean yolo all
 
-.PHONY: all fclean clean re
+.PHONY: all  yolo fclean clean re

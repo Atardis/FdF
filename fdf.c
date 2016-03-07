@@ -29,10 +29,11 @@ void	ft_put_key_nb(int keycode)
 	ft_putendl("--------------");
 }
 
-void	ft_exit(int i)
+void	ft_exit(t_mlxstore *MLX)
 {
 	ft_putchar('\n');
 	ft_putendl("ESC : Good Bye My Friend");
+	mlx_
 	exit(0);
 }
 
