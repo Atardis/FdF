@@ -25,6 +25,8 @@ void	ft_put_key_nb(int keycode)
 		ft_putchar(62);
 	if (keycode == EXIT)
 		ft_putstr("EXIT");
+	else
+		ft_putnbr(keycode);
 	ft_putchar('\n');
 	ft_putendl("--------------");
 }
@@ -49,6 +51,8 @@ int		my_fonct_key(int keycode, t_mlxstore *MLX)
 		ft_left(keycode, MLX);
 	if (keycode == RIGHT)
 		ft_right(keycode, MLX);
+	else
+		color(keycode, MLX);
 	return (0);
 }
 
@@ -62,16 +66,17 @@ void	ft_test(int i)
 	MLX.x = 449;
 	MLX.y = 449;
 	MLX.move = 100;
-	y = MLX.y;
-	x = MLX.x;
+	MLX.size_x = 1000;
+	MLX.size_y = 1000;
+	MLX.color = 0x00FF6600;
 	MLX.mlx = mlx_init();
-	MLX.win = mlx_new_window(MLX.mlx, 1000, 1000, "Le putain de test");
+	MLX.win = mlx_new_window(MLX.mlx, MLX.size_x, MLX.size_y, "Le putain de test");
 	y = 449;
 	while (++y < 550)
 	{
 		x = 449;
 		while (++x < 550)
-			mlx_pixel_put(MLX.mlx, MLX.win, x, y, 0x00FF6600);
+			mlx_pixel_put(MLX.mlx, MLX.win, x, y, MLX.color);
 	}
 	mlx_key_hook(MLX.win, my_fonct_key, &MLX);
 	mlx_loop(MLX.mlx);
@@ -80,19 +85,29 @@ void	ft_test(int i)
 void		ft_error(char *str)
 {
 	ft_putendl(str);
+	exit(1);
 }
 
 int main(int argc, char **argv)
 {
-	char	buff[BUFF_SIZE + 1];
-	int		fd;
-	int		read_result;
-	char 	*line;
+	// int		fd;
+	// char 	*line;
+	// int 	y;
+	// int		x;
+	// int		i;
+	// int		c;
 
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		ft_error("error");
-	while (get_next_line(fd, &line) > 0)
-		ft_putendl(line);
+	// if (argc != 2)
+	// 	ft_error("Pas le bon nombre d'argument");
+	// if ((fd = open(argv[1], O_RDONLY)) == -1)
+	// 	ft_error("Fichier Inexistant");
+	// y = -1;
+	// while (++y && get_next_line(fd, &line))
+	// {
+	// 	x = -1
+	// 	i = 0;
+	// 	while (++x && c = map_extract(line))
+	// }
 	ft_test(1);
 	return (0);
 }

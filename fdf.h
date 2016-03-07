@@ -22,17 +22,26 @@
 #define DOWN 125
 #define LEFT 123
 #define RIGHT 124
+
+#define GREEN 9
+#define BLUE 11
+#define RED
 #define EXIT 53
 
 typedef struct	s_mlxstore
 {
 	void	*mlx;
+	void	*image;
 	void	*win;
 	int 	x;
 	int 	y;
 	int 	move;
+	int 	size_y;
+	int 	size_x;
+	int		color;
 }				t_mlxstore;
 
+void	color(int keycode, t_mlxstore *MLX);
 void	ft_up(int keycode, t_mlxstore *MLX);
 void	ft_down(int keycode, t_mlxstore *MLX);
 void	ft_right(int keycode, t_mlxstore *MLX);

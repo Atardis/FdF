@@ -12,6 +12,16 @@
 
 #include "fdf.h"
 
+void	color(int keycode, t_mlxstore *MLX)
+{
+	if (keycode == 11)
+		MLX->color = 0x004189DD;
+	if (keycode == 9)
+		MLX->color = 0x0055BE47;
+	if (keycode == 15)
+		MLX->color = 0x00C10435;
+}
+
 void	ft_up(int keycode, t_mlxstore *MLX)
 {
 	int y;
@@ -23,7 +33,7 @@ void	ft_up(int keycode, t_mlxstore *MLX)
 	{
 		x = MLX->x - 1;
 		while (++x < MLX->x + MLX->move)
-			mlx_pixel_put(MLX->mlx, MLX->win, x, y, 0x00FF6600);
+			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
 	}
 }
 
@@ -38,7 +48,7 @@ void	ft_down(int keycode, t_mlxstore *MLX)
 	{
 		x = MLX->x - 1;
 		while (++x < MLX->x + MLX->move)
-			mlx_pixel_put(MLX->mlx, MLX->win, x, y, 0x00FF6600);
+			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
 	}
 }
 
@@ -53,7 +63,7 @@ void	ft_left(int keycode, t_mlxstore *MLX)
 	{
 		x = MLX->x - 1;
 		while (++x < MLX->x + MLX->move)
-			mlx_pixel_put(MLX->mlx, MLX->win, x, y, 0x00FF6600);
+			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
 	}
 }
 
@@ -68,6 +78,6 @@ void	ft_right(int keycode, t_mlxstore *MLX)
 	{
 		x = MLX->x - 1;
 		while (++x < MLX->x + MLX->move)
-			mlx_pixel_put(MLX->mlx, MLX->win, x, y, 0x00FF6600);
+			mlx_pixel_put(MLX->mlx, MLX->win, x, y, MLX->color);
 	}
 }
