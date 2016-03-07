@@ -26,7 +26,7 @@ $(NAME):
 
 clean:
 	@rm -f $(NAME)
-	@echo "\033[31mDestruction de l'executable fdf\t\tOK"
+	@echo "\033[33mDestruction de l'executable fdf\t\tOK"
 	@make -C libft clean
 	@echo "Destruction des fichier .o libft\tOK"
 
