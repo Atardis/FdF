@@ -48,5 +48,6 @@ void	ft_right(int keycode, t_mlxstore *MLX);
 void	ft_left(int keycode, t_mlxstore *MLX);
 void	ft_zoom_up(int keycode, t_mlxstore *MLX);
 void	ft_zoom_down(int keycode, t_mlxstore *MLX);
+void	print_map_to_win(t_mlxstore *MLX, char *line, int y);
 
 #endif

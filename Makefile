@@ -12,6 +12,7 @@
 
 NAME=fdf
 FLAG=-lmlx -framework OpenGL -framework Appkit
+FLAGN=-Wall -Wextra -Werror
 
 SRC = 	fdf.c \
 		fdf_move.c
