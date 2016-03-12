@@ -17,7 +17,7 @@
 #include <mlx.h>
 #include <fcntl.h>
 
-#define BUFF_SIZE 1000
+#define BUFF_SIZE 600
 #define UP 126
 #define DOWN 125
 #define LEFT 123
@@ -26,7 +26,7 @@
 
 #define GREEN 9
 #define BLUE 11
-#define RED
+#define RED 15
 #define EXIT 53
 
 typedef struct	s_mlxstore
@@ -41,13 +41,19 @@ typedef struct	s_mlxstore
 	int		color;
 }				t_mlxstore;
 
-void	color(int keycode, t_mlxstore *MLX);
-void	ft_up(int keycode, t_mlxstore *MLX);
-void	ft_down(int keycode, t_mlxstore *MLX);
-void	ft_right(int keycode, t_mlxstore *MLX);
-void	ft_left(int keycode, t_mlxstore *MLX);
-void	ft_zoom_up(int keycode, t_mlxstore *MLX);
-void	ft_zoom_down(int keycode, t_mlxstore *MLX);
-void	print_map_to_win(t_mlxstore *MLX, char *line, int y);
+typedef struct	s_fdfstore
+{
+	double	y;
+	double	x;
+	double	z;
+	int		color;
+}				t_fdfpoint;
+
+void		ft_error(char *str);
+void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
+int			count_space(char *line);
+t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
+
+
 
 #endif
