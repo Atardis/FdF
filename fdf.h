@@ -49,6 +49,8 @@ typedef struct	s_fdfstore
 	int		color;
 }				t_fdfpoint;
 
+
+
 void		ft_error(char *str);
 void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
 int			count_space(char *line);

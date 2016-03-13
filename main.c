@@ -58,10 +58,9 @@ int main(int argc, char **argv)
 	{
 		if (max_line == 0)
 			nb_caract = count_space(line);
-		// ft_putnbr(ft_strlen(line));
-		// ft_putchar('\n');
 		ft_putnbr(count_space(line));
-		ft_putchar('\n');
+		ft_putstr("  ");
+		ft_putendl(line);
 
 		if (max_line != 0)
 			if (nb_caract != count_space(line))
@@ -73,11 +72,8 @@ int main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
 	while (get_next_line(fd, &line) > 0)
-	{
-		ft_putendl(line);
 		//print_map_to_win(&mlx, line, y, max_line);
-		y = y + 15;
-	}
+
 	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
 	// mlx_loop(mlx.mlx);
 	return (0);

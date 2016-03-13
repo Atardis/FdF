@@ -47,4 +47,12 @@ t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_car
 	return(mlxmap);
 }
 
+void		ft_map_in_struct(t_fdfpoint mlxmap, int i)
+{
+	int index;
+
+	index = -1;
+	while ()
+}
+
 //0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
