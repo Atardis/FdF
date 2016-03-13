@@ -15,29 +15,23 @@
 int	count_space(char *line)
 {
 	int index;
-	int	i;
 	int count;
 
 	index = 0;
 	count = 0;
-	i = 0;
 	while (line[index])
 	{
-		if (line[i] == ' ')
-			index++;
 		if ((line[index] >= '0' && line[index] <= '9') || line[index] == '-')
 		{
-			i++;
-			while (line[index] != ' ')
+			count++;
+			while (line[index] && line[index] != ' ')
 				index++;
-		}		
+		}
+		else
+			index++;
 	}
-	return (i);
+	return (count);
 }
-
-
-
-
 
 t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 {

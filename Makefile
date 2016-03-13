@@ -15,7 +15,8 @@ FLAG=-lmlx -framework OpenGL -framework Appkit
 FLAGN=-Wall -Wextra -Werror
 
 SRC = 	main.c \
-		fdf_move.c
+		fdf_move.c \
+		my_fucking_test.c
 
 all: $(NAME)
 

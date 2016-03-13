@@ -26,7 +26,6 @@ void	define_struct(t_mlxstore *mlx)
 	mlx->move = 100;
 	mlx->size_x = 1000;
 	mlx->size_y = 1000;
-	mlx->color = 0x00FF6600;
 }
 
 void		ft_error(char *str)
@@ -46,8 +45,8 @@ int main(int argc, char **argv)
 	int 	nb_caract;
 
 	define_struct(&mlx);
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "fdf");
+	// mlx.mlx = mlx_init();
+	// mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "");
 	if (argc != 2)
 		ft_error("Pas le bon nombre d'argument");
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
@@ -59,13 +58,14 @@ int main(int argc, char **argv)
 	{
 		if (max_line == 0)
 			nb_caract = count_space(line);
-		ft_putnbr(ft_strlen(line));
-		ft_putchar('\n');
+		// ft_putnbr(ft_strlen(line));
+		// ft_putchar('\n');
 		ft_putnbr(count_space(line));
 		ft_putchar('\n');
-		// if (max_line != 0)
-		// 	if (nb_caract != count_space(line))
-		// 		ft_error("Fichier Invalide");
+
+		if (max_line != 0)
+			if (nb_caract != count_space(line))
+				ft_error("Fichier Invalide");
 		max_line++;
 	}
 	close(fd);
