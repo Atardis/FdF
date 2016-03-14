@@ -55,4 +55,21 @@ void		ft_map_in_struct(t_fdfpoint mlxmap, int i)
 	while ()
 }
 
+void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
+{
+	int index;
+	int tmp;
+	int x;
+	char *str;
+
+	index = 0;
+	x = 0;
+	while (line[i])
+	{
+		if((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
+			tmp = atoi_re(line, )
+		utilise les pointeurs sur line pour envoyer au bon endroit =( dsl)
+	}
+}
+
 //0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0

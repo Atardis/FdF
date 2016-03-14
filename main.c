@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
 	while (get_next_line(fd, &line) > 0)
-		//print_map_to_win(&mlx, line, y, max_line);
+		print_map_to_win(&mlx, line, y, max_line);
 
 	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
 	// mlx_loop(mlx.mlx);
