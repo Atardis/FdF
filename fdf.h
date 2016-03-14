@@ -43,10 +43,10 @@ typedef struct	s_mlxstore
 
 typedef struct	s_fdfstore
 {
-	double	y;
-	double	x;
-	double	z;
-	int		color;
+	double			y;
+	double			x;
+	double			z;
+	unsigned int 	color;
 }				t_fdfpoint;
 
 
@@ -55,7 +55,6 @@ void		ft_error(char *str);
 void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
 int			count_space(char *line);
 t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
-
-
+void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract);
 
 #endif

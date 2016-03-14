@@ -15,6 +15,7 @@ NAME = libft.a
 FLAGS = -Wall -Wextra -Werror -I includes/ -c
 SRC = \
 	ft_atoi.c \
+	ft_atoi_re.c \
 	ft_itoa.c \
 	ft_tolower.c \
 	ft_toupper.c \

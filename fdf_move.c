@@ -35,41 +35,49 @@ int	count_space(char *line)
 
 t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 {
-	int y;
+	unsigned int y;
 	int x;
 
 	if (!(mlxmap = (t_fdfpoint **)malloc(sizeof(t_fdfpoint *) * max_line)))
-		ft_error("Malloc has Failed for the struct");
+		ft_error("Malloc has Failed for the struct Y");
 	y = -1;
 	while (++y < max_line)
+	{
 		if (!(mlxmap[y] = (t_fdfpoint *)malloc(sizeof(t_fdfpoint) * nb_caract)))
-			ft_error("Malloc has Failed for the struct");
+			ft_error("Malloc has Failed for the struct X");
+			x = -1;
+		while (++x < nb_caract)
+		{
+			mlxmap[y][x].z = 0;
+			mlxmap[y][x].y = y;
+			mlxmap[y][x].x = x;
+			mlxmap[y][x].color = 0;
+		}
+	}
 	return(mlxmap);
 }
 
-void		ft_map_in_struct(t_fdfpoint mlxmap, int i)
+void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract)
 {
-	int index;
-
-	index = -1;
-	while ()
-}
-
-void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
-{
-	int index;
-	int tmp;
+	int i;
 	int x;
-	char *str;
+	int point;
 
-	index = 0;
+	i = 0;
+	point = 0;
 	x = 0;
-	while (line[i])
+	while (str[i])
 	{
-		if((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
-			tmp = atoi_re(line, )
-		utilise les pointeurs sur line pour envoyer au bon endroit =( dsl)
+		if (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
+			i++;
+		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && point == 0 && x < nb_caract)
+		{
+			point = 1;
+			mlxmap[y][x].z = ft_atoi_re(str, i);
+			x++;
+		}
+		while (str[i] == '-' || (str[i] >= '0' && str[i] <= '9'))
+			i++;
+		point = 0;
 	}
 }
-
-//0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0

@@ -45,23 +45,16 @@ int main(int argc, char **argv)
 	int 	nb_caract;
 
 	define_struct(&mlx);
-	// mlx.mlx = mlx_init();
-	// mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "");
 	if (argc != 2)
 		ft_error("Pas le bon nombre d'argument");
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
-	y = 15;
 	max_line = 0;
 	nb_caract = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (max_line == 0)
 			nb_caract = count_space(line);
-		ft_putnbr(count_space(line));
-		ft_putstr("  ");
-		ft_putendl(line);
-
 		if (max_line != 0)
 			if (nb_caract != count_space(line))
 				ft_error("Fichier Invalide");
@@ -71,10 +64,26 @@ int main(int argc, char **argv)
 	mlxmap = fonction_creat_struct(mlxmap, max_line, nb_caract);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
-	while (get_next_line(fd, &line) > 0)
-		print_map_to_win(&mlx, line, y, max_line);
-
-	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
-	// mlx_loop(mlx.mlx);
+	y = -1;
+	while (get_next_line(fd, &line) > 0 && ++y < max_line)
+		send_map_to_struct(mlxmap, line, y, nb_caract);
+	ft_putendl("Structure remplie");
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// mlx.mlx = mlx_init();
+	// mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "");
+	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
+	// mlx_loop(mlx.mlx);
