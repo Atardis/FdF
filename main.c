@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	y = -1;
 	while (get_next_line(fd, &line) > 0 && ++y < max_line)
 		send_map_to_struct(mlxmap, line, y, nb_caract);
-	ft_putendl("Structure remplie");
+	ft_print_struct(mlxmap, max_line, nb_caract);
 	return (0);
 }
 

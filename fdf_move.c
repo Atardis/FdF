@@ -81,3 +81,21 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract)
 		point = 0;
 	}
 }
+
+void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < max_line)
+	{
+		x = -1;
+		while (++x < nb_caract)
+		{
+			ft_putnbr(mlxmap[y][x].z);
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	}
+}
