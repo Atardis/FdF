@@ -22,28 +22,20 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft
-	@echo "\033[33;32m-----------------------------------------------"
 	@echo "\033[33;32m|\033[31m Compilation de la libft\t\t\033[33;32m | OK |"
 	@gcc -o $(NAME) $(SRC) $(FLAG) libft/libft.a
-	@echo "\033[33;32m-----------------------------------------------"
 	@echo "\033[33;32m|\033[31m Compilation du programme Fdf\t\t\033[33;32m | OK |"
-	@echo "\033[33;32m-----------------------------------------------"
-	@echo "\033[33;32m|\033[33;32m           The \033[31mfdf \033[33;32mfile is create            \033[33;32m|"
-	@echo "\033[33;32m-----------------------------------------------"
+	@echo "\033[33;32m|\033[33;32m The \033[31mfdf \033[33;32mfile is create\t\t\033[33;32m | OK |"
 	
 clean:
-	@echo "\033[33;32m-----------------------------------------------"
 	@echo "\033[33;32m|\033[33m Destruction des fichier .o libf\t\033[33;32m | OK |"
 	@make -C libft clean
-	@echo "\033[33;32m-----------------------------------------------"
 
 fclean: clean
 	@make -C libft fclean
 	@echo "\033[33;32m|\033[33m Destruction du fichier  .a libft\t\033[33;32m | OK |"
-	@echo "\033[33;32m-----------------------------------------------"
 	@rm -f $(NAME)
 	@echo "\033[33;32m|\033[33m Destruction de l'executable fdf\t\033[33;32m | OK |"
-	@echo "\033[33;32m-----------------------------------------------"
 
 line:
 	@echo "\033[33;31m-----------------------------------------------"
