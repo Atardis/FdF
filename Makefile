@@ -25,6 +25,7 @@ $(NAME):
 	@echo "\033[33;32m|\033[31m Compilation de la libft\t\t\033[33;32m | OK |"
 	@gcc -o $(NAME) $(SRC) $(FLAG) libft/libft.a
 	@echo "\033[33;32m|\033[31m Compilation du programme Fdf\t\t\033[33;32m | OK |"
+	@echo "\033[33;31m-----------------------------------------------"
 	@echo "\033[33;32m|\033[33;32m The \033[31mfdf \033[33;32mfile is create\t\t\033[33;32m | OK |"
 	
 clean:
@@ -43,3 +44,5 @@ line:
 re: fclean line all
 
 .PHONY: all line fclean clean re
+
+tab= (char **)malloc(sizeof(char *) * 4)

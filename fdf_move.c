@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	count_space(char *line)
+int	count_carac(char *line)
 {
 	int index;
 	int count;
@@ -76,7 +76,7 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract)
 			mlxmap[y][x].z = ft_atoi_re(str, i);
 			x++;
 		}
-		while (str[i] == '-' || (str[i] >= '0' && str[i] <= '9'))
+		while (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' && str[i] <= 'F'))
 			i++;
 		point = 0;
 	}
@@ -99,3 +99,14 @@ void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 		ft_putchar('\n');
 	}
 }
+
+
+
+
+
+
+
+
+
+// 0123456789112345679
+// 0 110 11 25 410 144 021 548 212

@@ -31,7 +31,7 @@ void	define_struct(t_mlxstore *mlx)
 void		ft_error(char *str)
 {
 	ft_putendl(str);
-	exit(2);
+	exit(1);
 }
 
 int main(int argc, char **argv)
@@ -54,9 +54,9 @@ int main(int argc, char **argv)
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (max_line == 0)
-			nb_caract = count_space(line);
+			nb_caract = count_carac(line);
 		if (max_line != 0)
-			if (nb_caract != count_space(line))
+			if (nb_caract != count_carac(line))
 				ft_error("Fichier Invalide");
 		max_line++;
 	}
