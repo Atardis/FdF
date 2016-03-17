@@ -21,9 +21,6 @@ void	ft_exit(void)
 
 void	define_struct(t_mlxstore *mlx)
 {
-	mlx->x = 449;
-	mlx->y = 449;
-	mlx->move = 100;
 	mlx->size_x = 1000;
 	mlx->size_y = 1000;
 }
@@ -38,50 +35,37 @@ int main(int argc, char **argv)
 {
 	static 	t_mlxstore	mlx;
 	static 	t_fdfpoint	**mlxmap;
-	int		fd;
 	char 	*line;
 	int		y;
-	int		max_line;
-	int 	nb_caract;
+	int 	i;
 
 	define_struct(&mlx);
-	if (argc != 2)
+	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument");
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
+	if ((mlx.fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
-	max_line = 0;
-	nb_caract = 0;
-	while (get_next_line(fd, &line) > 0)
+	mlx.max_line = 0;
+	mlx.nb_caract = 0;
+	while (get_next_line(mlx.fd, &line) > 0)
 	{
-		if (max_line == 0)
-			nb_caract = count_carac(line);
-		if (max_line != 0)
-			if (nb_caract != count_carac(line))
+		if (mlx.max_line == 0)
+			mlx.nb_caract = count_carac(line);
+		if (mlx.max_line != 0)
+			if (mlx.nb_caract != count_carac(line))
 				ft_error("Fichier Invalide");
-		max_line++;
+		mlx.max_line++;
 	}
-	close(fd);
-	mlxmap = fonction_creat_struct(mlxmap, max_line, nb_caract);
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
+	close(mlx.fd);
+	mlxmap = fonction_creat_struct(mlxmap, mlx.max_line, mlx.nb_caract);
+	if ((mlx.fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
 	y = -1;
-	while (get_next_line(fd, &line) > 0 && ++y < max_line)
-		send_map_to_struct(mlxmap, line, y, nb_caract);
-	ft_print_struct(mlxmap, max_line, nb_caract);
+	i = 0;
+	while ((i = get_next_line(mlx.fd, &line)) > 0 && ++y < mlx.max_line)
+		send_map_to_struct(mlxmap, line, y, mlx);
+	ft_print_struct(mlxmap, mlx.max_line, mlx.nb_caract);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 	// mlx.mlx = mlx_init();
 	// mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "");

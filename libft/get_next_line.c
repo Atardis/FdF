@@ -50,5 +50,6 @@ int			get_next_line(int const fd, char **line)
 		store.cache[fd] = store.cache[fd] + ft_strlenre(store.cache[fd], '\n');
 		return (1);
 	}
-	return (0);
+store.cache[fd] = NULL;
+return (0);
 }

@@ -33,12 +33,11 @@ typedef struct	s_mlxstore
 {
 	void	*mlx;
 	void	*win;
-	int 	x;
-	int 	y;
-	int 	move;
 	int 	size_y;
 	int 	size_x;
-	int		color;
+	int 	fd;
+	unsigned max_line;
+	unsigned nb_caract;
 }				t_mlxstore;
 
 typedef struct	s_fdfstore
@@ -50,12 +49,11 @@ typedef struct	s_fdfstore
 }				t_fdfpoint;
 
 
-
 void		ft_error(char *str);
 void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
 int			count_carac(char *line);
 t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
-void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract);
+void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx);
 void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
 
 #endif

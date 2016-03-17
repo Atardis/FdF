@@ -21,7 +21,7 @@ int	count_carac(char *line)
 	count = 0;
 	while (line[index])
 	{
-		if ((line[index] >= '0' && line[index] <= '9') || line[index] == '-')
+		if (line[index] == '-' || (line[index] >= '0' && line[index] <= '9'))
 		{
 			count++;
 			while (line[index] && line[index] != ' ')
@@ -33,7 +33,8 @@ int	count_carac(char *line)
 	return (count);
 }
 
-t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
+t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line,
+		int nb_caract)
 {
 	unsigned int y;
 	int x;
@@ -57,7 +58,7 @@ t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_car
 	return(mlxmap);
 }
 
-void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract)
+void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx)
 {
 	int i;
 	int x;
@@ -66,17 +67,18 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, int nb_caract)
 	i = 0;
 	point = 0;
 	x = 0;
-	while (str[i])
+	while (str[i] && y < mlx.max_line)
 	{
 		if (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
 			i++;
-		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && point == 0 && x < nb_caract)
+		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && point == 0 && x < mlx.nb_caract)
 		{
 			point = 1;
 			mlxmap[y][x].z = ft_atoi_re(str, i);
 			x++;
 		}
-		while (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' && str[i] <= 'F'))
+		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') ||
+			(str[i] >= 'A' && str[i] <= 'F') || str[i] == ',' || str[i] == 'x'))
 			i++;
 		point = 0;
 	}
@@ -99,14 +101,3 @@ void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 		ft_putchar('\n');
 	}
 }
-
-
-
-
-
-
-
-
-
-// 0123456789112345679
-// 0 110 11 25 410 144 021 548 212
