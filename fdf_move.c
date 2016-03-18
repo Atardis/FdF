@@ -62,25 +62,26 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx)
 {
 	int i;
 	int x;
-	int point;
+	int find;
 
 	i = 0;
-	point = 0;
+	find = 0;
 	x = 0;
 	while (str[i] && y < mlx.max_line)
 	{
-		if (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
+		while (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
 			i++;
-		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && point == 0 && x < mlx.nb_caract)
+		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && find == 0 &&
+			x < mlx.nb_caract)
 		{
-			point = 1;
+			find = 1;
 			mlxmap[y][x].z = ft_atoi_re(str, i);
 			x++;
 		}
 		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') ||
 			(str[i] >= 'A' && str[i] <= 'F') || str[i] == ',' || str[i] == 'x'))
 			i++;
-		point = 0;
+		find = 0;
 	}
 }
 
@@ -101,3 +102,41 @@ void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 		ft_putchar('\n');
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//yolo

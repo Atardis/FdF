@@ -12,13 +12,6 @@
 
 #include "fdf.h"
 
-void	ft_exit(void)
-{
-	ft_putchar('\n');
-	ft_putendl("ESC : Good Bye My Friend");
-	exit(1);
-}
-
 void	define_struct(t_mlxstore *mlx)
 {
 	mlx->size_x = 1000;
@@ -31,10 +24,18 @@ void		ft_error(char *str)
 	exit(1);
 }
 
+int		my_fonct_key(int keycode, t_mlxstore *mlx)
+{
+	ft_putnbr_end(keycode);
+	if (keycode == EXIT)
+		ft_error("ESC : Good Bye My Friend");
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
-	static 	t_mlxstore	mlx;
-	static 	t_fdfpoint	**mlxmap;
+	t_mlxstore	mlx;
+	t_fdfpoint	**mlxmap;
 	char 	*line;
 	int		y;
 	int 	i;
@@ -67,7 +68,5 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-	// mlx.mlx = mlx_init();
-	// mlx.win = mlx_new_window(mlx.mlx, mlx.size_x, mlx.size_y, "");
 	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
 	// mlx_loop(mlx.mlx);
