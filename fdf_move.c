@@ -12,6 +12,58 @@
 
 #include "fdf.h"
 
+void	ft_modif_up(t_all *all)
+{
+	int i;
+
+	all->env.origin_y -= 10;
+	i = mlx_destroy_image(all->env.mlx, all->env.img);
+	mlx_clear_window(all->env.mlx, all->env.win);
+	all->env.img = mlx_new_image(all->env.mlx, all->env.width, all->env.height);
+	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
+			&all->env.ed);
+	ft_print_map_to_image(all);
+}
+
+void	ft_modif_down(t_all *all)
+{
+	int i;
+
+	all->env.origin_y += 10;
+	i = mlx_destroy_image(all->env.mlx, all->env.img);
+	mlx_clear_window(all->env.mlx, all->env.win);
+	all->env.img = mlx_new_image(all->env.mlx, all->env.width, all->env.height);
+	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
+			&all->env.ed);
+	ft_print_map_to_image(all);
+}
+
+void	ft_modif_left(t_all *all)
+{
+	int i;
+
+	all->env.origin_x -= 10;
+	i = mlx_destroy_image(all->env.mlx, all->env.img);
+	mlx_clear_window(all->env.mlx, all->env.win);
+	all->env.img = mlx_new_image(all->env.mlx, all->env.width, all->env.height);
+	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
+			&all->env.ed);
+	ft_print_map_to_image(all);
+}
+
+void	ft_modif_right(t_all *all)
+{
+	int i;
+
+	all->env.origin_x += 10;
+	i = mlx_destroy_image(all->env.mlx, all->env.img);
+	mlx_clear_window(all->env.mlx, all->env.win);
+	all->env.img = mlx_new_image(all->env.mlx, all->env.width, all->env.height);
+	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
+			&all->env.ed);
+	ft_print_map_to_image(all);
+}
+
 int	count_carac(char *line)
 {
 	int index;
@@ -123,5 +175,5 @@ void ft_print_map_to_image(t_all *all)
 				ft_put_pixel_to_image(all, y, x, color);
 		}
 	}
-	mlx_put_image_to_window(all->env.mlx, all->env.win, all->env.img, 150, 150);
+	mlx_put_image_to_window(all->env.mlx, all->env.win, all->env.img, all->env.origin_x, all->env.origin_y);
 }

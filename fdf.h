@@ -51,6 +51,8 @@ typedef struct	s_environ
 	int		bpp;
 	int 	sl;
 	int 	ed;
+	int		origin_x;
+	int		origin_y;
 	unsigned max_line;
 	unsigned nb_caract;
 }				t_env;
@@ -68,6 +70,12 @@ void 		init(t_all *all);
 void		send_map_to_struct(t_all all, char *str, int y);
 void		ft_print_struct(t_map **map, int max_line, int nb_caract);
 void 		ft_print_map_to_image(t_all *all);
+int		my_fonct_key(int keycode, t_all *all);
+void	ft_modif_up(t_all *all);
+void	ft_modif_down(t_all *all);
+void	ft_modif_left(t_all *all);
+void	ft_modif_right(t_all *all);
+
 
 int		my_fonct_key(int keycode, t_all *all);
 int	count_carac(char *line);

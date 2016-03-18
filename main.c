@@ -29,19 +29,32 @@ int		my_fonct_key(int keycode, t_all *all)
 	ft_putnbr_end(keycode);
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
+	if (keycode == DOWN)
+		ft_modif_down(all);
+	if (keycode == LEFT)
+		ft_modif_left(all);
+	if (keycode == UP)
+		ft_modif_up(all);
+	if (keycode == RIGHT)
+		ft_modif_right(all);
 	return (0);
 }
 
 void ft_put_pixel_to_image(t_all *all, int y, int x, int color)
 {
 	int i;
-	int j;
 
-	j = 10;
 	i = 10;
 	if (x < 0 || x > all->env.width || y < 0 || y > all->env.height)
 		ft_error("probleme de put_pixel");
-	*(unsigned int*)(all->env.data + ((i + x) * 15) * all->env.bpp + ((j + y) * 15) * all->env.sl) = mlx_get_color_value(all->env.mlx, color);
+		*(unsigned int*)(all->env.data + (((x * 4) * all->env.bpp) + 1) + ((y * 20) *
+			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
+		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
+			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
+		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
+			all->env.sl) + 1) = mlx_get_color_value(all->env.mlx, color);
+		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
+			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
 }
 
 
