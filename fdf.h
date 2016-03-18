@@ -29,50 +29,49 @@
 #define RED 15
 #define EXIT 53
 
-typedef struct	s_mlxstore
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*data;
-	int 	size_y;
-	int 	size_x;
-	int 	fd;
-	unsigned max_line;
-	unsigned nb_caract;
-
-}				t_mlxstore;
-
 typedef struct	s_fdfstore
 {
 	double			y;
 	double			x;
 	double			z;
 	int 	color;
-}				t_fdfpoint;
+}				t_map;
 
 typedef struct	s_environ
 {
-	int		width;
-	int		height;
 	void *mlx;
 	void *win;
 	void *img;
 	char *data;
+	int 	fd;
+	int		width;
+	int		height;
+	int 	size_y;
+	int 	size_x;
 	int		bpp;
 	int 	sl;
 	int 	ed;
+	unsigned max_line;
+	unsigned nb_caract;
 }				t_env;
 
+typedef struct s_all
+{
+	t_map		**map;
+	t_env		env;
+} 				t_all;
 
+void		define_struct(t_all *all);
 void		ft_error(char *str);
-void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
-int			count_carac(char *line);
-t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
-void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx);
-void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
-int		my_fonct_key(int keycode, t_mlxstore *mlx);
-void ft_put_pixel_to_image(t_env *env, int y, int x, int color);
-void ft_print_map_to_image(t_env *env, t_fdfpoint **mlxmap, t_mlxstore *mlx);
+void 		ft_put_pixel_to_image(t_all *all, int y, int x, int color);
+void 		init(t_all *all);
+void		send_map_to_struct(t_all all, char *str, int y);
+void		ft_print_struct(t_map **map, int max_line, int nb_caract);
+void 		ft_print_map_to_image(t_all *all);
+
+int		my_fonct_key(int keycode, t_all *all);
+int	count_carac(char *line);
+
+t_map	**fonction_creat_struct(t_all *all);
 
 #endif

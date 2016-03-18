@@ -33,32 +33,31 @@ int	count_carac(char *line)
 	return (count);
 }
 
-t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line,
-		int nb_caract)
+t_map	**fonction_creat_struct(t_all *all)
 {
 	unsigned int y;
 	int x;
 
-	if (!(mlxmap = (t_fdfpoint **)malloc(sizeof(t_fdfpoint *) * max_line)))
+	if (!(all->map = (t_map **)malloc(sizeof(t_map *) * all->env.max_line)))
 		ft_error("Malloc has Failed for the struct Y");
 	y = -1;
-	while (++y < max_line)
+	while (++y < all->env.max_line)
 	{
-		if (!(mlxmap[y] = (t_fdfpoint *)malloc(sizeof(t_fdfpoint) * nb_caract)))
+		if (!(all->map[y] = (t_map *)malloc(sizeof(t_map) * all->env.nb_caract)))
 			ft_error("Malloc has Failed for the struct X");
 			x = -1;
-		while (++x < nb_caract)
+		while (++x < all->env.nb_caract)
 		{
-			mlxmap[y][x].z = 0;
-			mlxmap[y][x].y = y;
-			mlxmap[y][x].x = x;
-			mlxmap[y][x].color = 0;
+			all->map[y][x].z = 0;
+			all->map[y][x].y = y;
+			all->map[y][x].x = x;
+			all->map[y][x].color = 0;
 		}
 	}
-	return(mlxmap);
+	return(all->map);
 }
 
-void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx)
+void		send_map_to_struct(t_all all, char *str, int y)
 {
 	int i;
 	int x;
@@ -67,15 +66,15 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx)
 	i = 0;
 	find = 0;
 	x = 0;
-	while (str[i] && y < mlx.max_line)
+	while (str[i] && y < all.env.max_line)
 	{
 		while (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
 			i++;
 		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && find == 0 &&
-			x < mlx.nb_caract)
+			x < all.env.nb_caract)
 		{
 			find = 1;
-			mlxmap[y][x].z = ft_atoi_re(str, i);
+			all.map[y][x].z = ft_atoi_re(str, i);
 			x++;
 		}
 		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') ||
@@ -85,7 +84,7 @@ void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx)
 	}
 }
 
-void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
+void		ft_print_struct(t_map **map, int max_line, int nb_caract)
 {
 	int y;
 	int x;
@@ -96,14 +95,14 @@ void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 		x = -1;
 		while (++x < nb_caract)
 		{
-			ft_putnbr(mlxmap[y][x].z);
+			ft_putnbr(map[y][x].z);
 			ft_putchar(' ');
 		}
 		ft_putchar('\n');
 	}
 }
 
-void ft_print_map_to_image(t_env *env, t_fdfpoint **mlxmap, t_mlxstore *mlx)
+void ft_print_map_to_image(t_all *all)
 {
 	int y;
 	int x;
@@ -113,16 +112,16 @@ void ft_print_map_to_image(t_env *env, t_fdfpoint **mlxmap, t_mlxstore *mlx)
 	color = 0xFF0000;
 	color2 = 0xFFFFFF;
 	y = -1;
-	while (++y < mlx->max_line)
+	while (++y < all->env.max_line)
 	{
 		x = -1;
-		while (++x < mlx->nb_caract)
+		while (++x < all->env.nb_caract)
 		{
-			if (mlxmap[y][x].z == 0)
-				ft_put_pixel_to_image(env, y, x, color2);
+			if (all->map[y][x].z == 0)
+				ft_put_pixel_to_image(all, y, x, color2);
 			else
-				ft_put_pixel_to_image(env, y, x, color);
+				ft_put_pixel_to_image(all, y, x, color);
 		}
 	}
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 150, 150);
+	mlx_put_image_to_window(all->env.mlx, all->env.win, all->env.img, 150, 150);
 }
