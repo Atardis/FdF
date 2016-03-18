@@ -103,40 +103,26 @@ void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract)
 	}
 }
 
+void ft_print_map_to_image(t_env *env, t_fdfpoint **mlxmap, t_mlxstore *mlx)
+{
+	int y;
+	int x;
+	int color;
+	int color2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//yolo
+	color = 0xFF0000;
+	color2 = 0xFFFFFF;
+	y = -1;
+	while (++y < mlx->max_line)
+	{
+		x = -1;
+		while (++x < mlx->nb_caract)
+		{
+			if (mlxmap[y][x].z == 0)
+				ft_put_pixel_to_image(env, y, x, color2);
+			else
+				ft_put_pixel_to_image(env, y, x, color);
+		}
+	}
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 150, 150);
+}

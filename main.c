@@ -32,14 +32,41 @@ int		my_fonct_key(int keycode, t_mlxstore *mlx)
 	return (0);
 }
 
+void ft_put_pixel_to_image(t_env *env, int y, int x, int color)
+{
+	int i;
+	int j;
+
+	j = 10;
+	i = 10;
+	if (x < 0 || x > env->width || y < 0 || y > env->height)
+		ft_error("probleme de put_pixel");
+	*(unsigned int*)(env->data + ((i + x) * 15) * env->bpp + ((j + y) * 15) * env->sl) = mlx_get_color_value(env->mlx, color);
+}
+
+
+void init(t_env *env)
+{
+	if (!(env->mlx = mlx_init()))
+	  ft_error("initialisation mlx_init error");
+	if (!(env->win = mlx_new_window(env->mlx, env->width, env->height, "Yolo")))
+		ft_error("initialisation mlx_new_windows error");
+	env->img = mlx_new_image(env->mlx, env->width, env->height);
+	env->data = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->ed);
+	env->bpp /= 8;
+}
+
 int main(int argc, char **argv)
 {
 	t_mlxstore	mlx;
 	t_fdfpoint	**mlxmap;
+	t_env				env;
 	char 	*line;
 	int		y;
 	int 	i;
 
+	env.width = 1000;
+	env.height = 1000;
 	define_struct(&mlx);
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument");
@@ -65,8 +92,8 @@ int main(int argc, char **argv)
 	while ((i = get_next_line(mlx.fd, &line)) > 0 && ++y < mlx.max_line)
 		send_map_to_struct(mlxmap, line, y, mlx);
 	ft_print_struct(mlxmap, mlx.max_line, mlx.nb_caract);
+	init(&env);
+	ft_print_map_to_image(&env, mlxmap, &mlx);
+	mlx_loop(env.mlx);
 	return (0);
 }
-
-	// mlx_key_hook(mlx.win, my_fonct_key, &mlx);
-	// mlx_loop(mlx.mlx);

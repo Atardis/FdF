@@ -51,6 +51,19 @@ typedef struct	s_fdfstore
 	int 	color;
 }				t_fdfpoint;
 
+typedef struct	s_environ
+{
+	int		width;
+	int		height;
+	void *mlx;
+	void *win;
+	void *img;
+	char *data;
+	int		bpp;
+	int 	sl;
+	int 	ed;
+}				t_env;
+
 
 void		ft_error(char *str);
 void		print_map_to_win(t_mlxstore *MLX, char *line, int y);
@@ -59,5 +72,7 @@ t_fdfpoint	**fonction_creat_struct(t_fdfpoint **mlxmap, int max_line, int nb_car
 void		send_map_to_struct(t_fdfpoint **mlxmap, char *str, int y, t_mlxstore mlx);
 void		ft_print_struct(t_fdfpoint **mlxmap, int max_line, int nb_caract);
 int		my_fonct_key(int keycode, t_mlxstore *mlx);
+void ft_put_pixel_to_image(t_env *env, int y, int x, int color);
+void ft_print_map_to_image(t_env *env, t_fdfpoint **mlxmap, t_mlxstore *mlx);
 
 #endif
