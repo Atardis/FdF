@@ -17,22 +17,19 @@
 #include <mlx.h>
 #include <fcntl.h>
 
+#define EXIT 53
 #define BUFF_SIZE 600
 #define UP 126
 #define DOWN 125
 #define LEFT 123
 #define RIGHT 124
-#define MOUSE_UP 4
-
-#define GREEN 9
-#define BLUE 11
-#define RED 15
-#define EXIT 53
+#define PLUS 69
+#define MINUS 78
 
 typedef struct	s_fdfstore
 {
-	double			y;
 	double			x;
+	double			y;
 	double			z;
 	int 	color;
 }				t_map;
@@ -53,6 +50,7 @@ typedef struct	s_environ
 	int 			ed;
 	int				origin_x;
 	int				origin_y;
+	int 			space;
 	unsigned 	max_line;
 	unsigned 	nb_caract;
 }						t_env;
@@ -76,6 +74,8 @@ void	ft_modif_down(t_all *all);
 void	ft_modif_left(t_all *all);
 void	ft_modif_right(t_all *all);
 void		ft_error(char *str);
+void	ft_modif_plus(t_all *all);
+void	ft_modif_minus(t_all *all);
 
 
 

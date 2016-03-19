@@ -18,6 +18,7 @@ void	define_struct(t_all *all)
 	all->env.size_y = 1000;
 	all->env.origin_y = 300;
 	all->env.origin_x = 300;
+	all->env.space = 10;
 }
 
 int		my_fonct_key(int keycode, t_all *all)
@@ -34,13 +35,17 @@ int		my_fonct_key(int keycode, t_all *all)
 		ft_modif_up(all);
 	if (keycode == RIGHT)
 		ft_modif_right(all);
+	if (keycode == PLUS)
+		ft_modif_plus(all);
+	if (keycode == MINUS)
+		ft_modif_minus(all);
 	return (0);
 }
 
 void ft_put_pixel_to_image(t_all *all, int y, int x, int color)
 {
 	if (!(x < 0 || x > all->env.size_x || y < 0 || y > all->env.size_y))
-		*(unsigned int*)(all->env.data + (x * all->env.bpp) * 10 + (y * all->env.sl) * 10) = mlx_get_color_value(all->env.mlx, color);
+		*(unsigned int*)(all->env.data + (x * all->env.bpp) * all->env.space + (y * all->env.sl) * all->env.space) = mlx_get_color_value(all->env.mlx, color);
 }
 
 
