@@ -39,23 +39,23 @@ typedef struct	s_fdfstore
 
 typedef struct	s_environ
 {
-	void *mlx;
-	void *win;
-	void *img;
-	char *data;
-	int 	fd;
-	int		width;
-	int		height;
-	int 	size_y;
-	int 	size_x;
-	int		bpp;
-	int 	sl;
-	int 	ed;
-	int		origin_x;
-	int		origin_y;
-	unsigned max_line;
-	unsigned nb_caract;
-}				t_env;
+	void 		*mlx;
+	void 		*win;
+	void 		*img;
+	char 		*data;
+	int 			fd;
+	int				width;
+	int				height;
+	int 			size_y;
+	int 			size_x;
+	int				bpp;
+	int 			sl;
+	int 			ed;
+	int				origin_x;
+	int				origin_y;
+	unsigned 	max_line;
+	unsigned 	nb_caract;
+}						t_env;
 
 typedef struct s_all
 {
@@ -75,6 +75,8 @@ void	ft_modif_up(t_all *all);
 void	ft_modif_down(t_all *all);
 void	ft_modif_left(t_all *all);
 void	ft_modif_right(t_all *all);
+void		ft_error(char *str);
+
 
 
 int		my_fonct_key(int keycode, t_all *all);

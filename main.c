@@ -16,17 +16,14 @@ void	define_struct(t_all *all)
 {
 	all->env.size_x = 1000;
 	all->env.size_y = 1000;
-}
-
-void		ft_error(char *str)
-{
-	ft_putendl(str);
-	exit(1);
+	all->env.origin_y = 300;
+	all->env.origin_x = 300;
 }
 
 int		my_fonct_key(int keycode, t_all *all)
 {
-	ft_putnbr_end(keycode);
+	ft_putnbr(keycode);
+	ft_putstr(",  ");
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
 	if (keycode == DOWN)
@@ -42,19 +39,8 @@ int		my_fonct_key(int keycode, t_all *all)
 
 void ft_put_pixel_to_image(t_all *all, int y, int x, int color)
 {
-	int i;
-
-	i = 10;
-	if (x < 0 || x > all->env.width || y < 0 || y > all->env.height)
-		ft_error("probleme de put_pixel");
-		*(unsigned int*)(all->env.data + (((x * 4) * all->env.bpp) + 1) + ((y * 20) *
-			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
-		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
-			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
-		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
-			all->env.sl) + 1) = mlx_get_color_value(all->env.mlx, color);
-		*(unsigned int*)(all->env.data + ((x * 4) * all->env.bpp) + ((y * 20) *
-			all->env.sl)) = mlx_get_color_value(all->env.mlx, color);
+	if (!(x < 0 || x > all->env.size_x || y < 0 || y > all->env.size_y))
+		*(unsigned int*)(all->env.data + (x * all->env.bpp) * 10 + (y * all->env.sl) * 10) = mlx_get_color_value(all->env.mlx, color);
 }
 
 
@@ -62,9 +48,9 @@ void init(t_all *all)
 {
 	if (!(all->env.mlx = mlx_init()))
 	  ft_error("initialisation mlx_init error");
-	if (!(all->env.win = mlx_new_window(all->env.mlx, all->env.width, all->env.height, "Yolo")))
+	if (!(all->env.win = mlx_new_window(all->env.mlx, all->env.size_x, all->env.size_y, "Yolo")))
 		ft_error("initialisation mlx_new_windows error");
-	all->env.img = mlx_new_image(all->env.mlx, all->env.width, all->env.height);
+	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
 	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl, &all->env.ed);
 	all->env.bpp /= 8;
 }
@@ -76,9 +62,6 @@ int main(int argc, char **argv)
 	int		y;
 	int 	i;
 
-
-	all.env.width = 1000;
-	all.env.height = 1000;
 	define_struct(&all);
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument");
@@ -103,10 +86,9 @@ int main(int argc, char **argv)
 	i = 0;
 	while ((i = get_next_line(all.env.fd, &line)) > 0 && ++y < all.env.max_line)
 		send_map_to_struct(all, line, y);
-	ft_print_struct(all.map, all.env.max_line, all.env.nb_caract);
 	init(&all);
 	ft_print_map_to_image(&all);
-	mlx_key_hook(all.env.win, my_fonct_key, &all);
+	mlx_hook(all.env.win, 2, (1L<<01), my_fonct_key, &all);
 	mlx_loop(all.env.mlx);
 	return (0);
 }

@@ -15,7 +15,9 @@ FLAG=-lmlx -framework OpenGL -framework Appkit
 FLAGN=-Wall -Wextra -Werror
 
 SRC = 	main.c \
-		fdf_move.c
+				fdf_key.c \
+				fdf_print.c \
+				fdf_struct.c
 
 all: $(NAME)
 
