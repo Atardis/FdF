@@ -17,7 +17,8 @@ FLAGN=-Wall -Wextra -Werror
 SRC = 	main.c \
 				fdf_key.c \
 				fdf_print.c \
-				fdf_struct.c
+				fdf_struct.c \
+				fdf_modif.c
 
 all: $(NAME)
 
@@ -30,7 +31,7 @@ $(NAME):
 	@echo "\033[33;32m|\033[33;32m The \033[31mfdf \033[33;32mfile is create\t\t\033[33;32m | OK |"
 
 clean:
-	@echo "\033[33;32m|\033[33m Destruction des fichier .o libf\t\033[33;32m | OK |"
+	@echo "\033[33;32m|\033[33m Destruction des fichiers .o libf\t\033[33;32m | OK |"
 	@make -C libft clean
 
 fclean: clean

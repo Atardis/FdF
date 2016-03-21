@@ -12,29 +12,20 @@
 
 #include "fdf.h"
 
-void	define_struct(t_a *a)
-{
-	a->e.size_x = 1000;
-	a->e.size_y = 1000;
-	a->e.origin_y = 300;
-	a->e.origin_x = 300;
-	a->e.space = 10;
-}
-
 int		my_fonct_key(int keycode, t_a *a)
 {
 	ft_putnbr(keycode);
 	ft_putstr(",  ");
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
-	if (keycode == DOWN)
-		ft_modif_down(a);
-	if (keycode == LEFT)
-		ft_modif_left(a);
 	if (keycode == UP)
-		ft_modif_up(a);
+		fdf_modif_up(a);
+	if (keycode == DOWN)
+		fdf_modif_down(a);
+	if (keycode == LEFT)
+		fdf_modif_left(a);
 	if (keycode == RIGHT)
-		ft_modif_right(a);
+		fdf_modif_right(a);
 	if (keycode == PLUS)
 		ft_modif_plus(a);
 	if (keycode == MINUS)
@@ -45,7 +36,7 @@ int		my_fonct_key(int keycode, t_a *a)
 void ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 {
 	if (!(x < 0 || x > a->e.size_x || y < 0 || y > a->e.size_y))
-		*(unsigned int*)(a->e.data + (x * a->e.bpp) * a->e.space + (y * a->e.sl) * a->e.space) = mlx_get_color_value(a->e.mlx, color);
+		*(unsigned int*)(a->e.data + (x * a->e.bpp) + (y * a->e.sl)) = mlx_get_color_value(a->e.mlx, color);
 }
 
 

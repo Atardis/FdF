@@ -76,6 +76,14 @@ void	ft_modif_right(t_a *a);
 void		ft_error(char *str);
 void	ft_modif_plus(t_a *a);
 void	ft_modif_minus(t_a *a);
+void	define_struct(t_a *a);
+
+void fdf_modif_left(t_a *a);
+void fdf_modif_up(t_a *a);
+void fdf_modif_right(t_a *a);
+void fdf_modif_down(t_a *a);
+void fdf_new_image(t_a *a);
+
 
 
 

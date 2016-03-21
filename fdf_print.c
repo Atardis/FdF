@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-include "fdf.h"
+#include "fdf.h"
 
 void		ft_error(char *str)
 {
@@ -34,11 +34,11 @@ void ft_print_map_to_image(t_a *a)
 		while (++x < a->e.nb_caract)
 		{
 			if (a->map[y][x].z == 0)
-				ft_put_pixel_to_image(a, y, x, color);
+				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, color);
 			else
-				ft_put_pixel_to_image(a, y, x, 0xFF0000);
+				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, 0xFF0000);
 		}
 	}
-	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, a->e.origin_x, a->e.origin_y);
+	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
 	i = mlx_destroy_image(a->e.mlx, a->e.img);
 }
