@@ -12,88 +12,88 @@
 
 #include "fdf.h"
 
-void	define_struct(t_all *all)
+void	define_struct(t_a *a)
 {
-	all->env.size_x = 1000;
-	all->env.size_y = 1000;
-	all->env.origin_y = 300;
-	all->env.origin_x = 300;
-	all->env.space = 10;
+	a->e.size_x = 1000;
+	a->e.size_y = 1000;
+	a->e.origin_y = 300;
+	a->e.origin_x = 300;
+	a->e.space = 10;
 }
 
-int		my_fonct_key(int keycode, t_all *all)
+int		my_fonct_key(int keycode, t_a *a)
 {
 	ft_putnbr(keycode);
 	ft_putstr(",  ");
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
 	if (keycode == DOWN)
-		ft_modif_down(all);
+		ft_modif_down(a);
 	if (keycode == LEFT)
-		ft_modif_left(all);
+		ft_modif_left(a);
 	if (keycode == UP)
-		ft_modif_up(all);
+		ft_modif_up(a);
 	if (keycode == RIGHT)
-		ft_modif_right(all);
+		ft_modif_right(a);
 	if (keycode == PLUS)
-		ft_modif_plus(all);
+		ft_modif_plus(a);
 	if (keycode == MINUS)
-		ft_modif_minus(all);
+		ft_modif_minus(a);
 	return (0);
 }
 
-void ft_put_pixel_to_image(t_all *all, int y, int x, int color)
+void ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 {
-	if (!(x < 0 || x > all->env.size_x || y < 0 || y > all->env.size_y))
-		*(unsigned int*)(all->env.data + (x * all->env.bpp) * all->env.space + (y * all->env.sl) * all->env.space) = mlx_get_color_value(all->env.mlx, color);
+	if (!(x < 0 || x > a->e.size_x || y < 0 || y > a->e.size_y))
+		*(unsigned int*)(a->e.data + (x * a->e.bpp) * a->e.space + (y * a->e.sl) * a->e.space) = mlx_get_color_value(a->e.mlx, color);
 }
 
 
-void init(t_all *all)
+void init(t_a *a)
 {
-	if (!(all->env.mlx = mlx_init()))
+	if (!(a->e.mlx = mlx_init()))
 	  ft_error("initialisation mlx_init error");
-	if (!(all->env.win = mlx_new_window(all->env.mlx, all->env.size_x, all->env.size_y, "Yolo")))
+	if (!(a->e.win = mlx_new_window(a->e.mlx, a->e.size_x, a->e.size_y, "Yolo")))
 		ft_error("initialisation mlx_new_windows error");
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl, &all->env.ed);
-	all->env.bpp /= 8;
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
+	a->e.bpp /= 8;
 }
 
 int main(int argc, char **argv)
 {
-	t_all all;
+	t_a a;
 	char 	*line;
 	int		y;
 	int 	i;
 
-	define_struct(&all);
+	define_struct(&a);
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument");
-	if ((all.env.fd = open(argv[1], O_RDONLY)) == -1)
+	if ((a.e.fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
-	all.env.max_line = 0;
-	all.env.nb_caract = 0;
-	while (get_next_line(all.env.fd, &line) > 0)
+	a.e.max_line = 0;
+	a.e.nb_caract = 0;
+	while (get_next_line(a.e.fd, &line) > 0)
 	{
-		if (all.env.max_line == 0)
-			all.env.nb_caract = count_carac(line);
-		if (all.env.max_line != 0)
-			if (all.env.nb_caract != count_carac(line))
+		if (a.e.max_line == 0)
+			a.e.nb_caract = count_carac(line);
+		if (a.e.max_line != 0)
+			if (a.e.nb_caract != count_carac(line))
 				ft_error("Fichier Invalide");
-		all.env.max_line++;
+		a.e.max_line++;
 	}
-	close(all.env.fd);
-	all.map = fonction_creat_struct(&all);
-	if ((all.env.fd = open(argv[1], O_RDONLY)) == -1)
+	close(a.e.fd);
+	a.map = fonction_creat_struct(&a);
+	if ((a.e.fd = open(argv[1], O_RDONLY)) == -1)
 		ft_error("Fichier Inexistant");
 	y = -1;
 	i = 0;
-	while ((i = get_next_line(all.env.fd, &line)) > 0 && ++y < all.env.max_line)
-		send_map_to_struct(all, line, y);
-	init(&all);
-	ft_print_map_to_image(&all);
-	mlx_hook(all.env.win, 2, (1L<<01), my_fonct_key, &all);
-	mlx_loop(all.env.mlx);
+	while ((i = get_next_line(a.e.fd, &line)) > 0 && ++y < a.e.max_line)
+		send_map_to_struct(a, line, y);
+	init(&a);
+	ft_print_map_to_image(&a);
+	mlx_hook(a.e.win, 2, (1L<<01), my_fonct_key, &a);
+	mlx_loop(a.e.mlx);
 	return (0);
 }

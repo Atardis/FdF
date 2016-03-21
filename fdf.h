@@ -58,30 +58,30 @@ typedef struct	s_environ
 typedef struct s_all
 {
 	t_map		**map;
-	t_env		env;
-} 				t_all;
+	t_env		e;
+} 				t_a;
 
-void		define_struct(t_all *all);
+void		define_struct(t_a *a);
 void		ft_error(char *str);
-void 		ft_put_pixel_to_image(t_all *all, int y, int x, int color);
-void 		init(t_all *all);
-void		send_map_to_struct(t_all all, char *str, int y);
+void 		ft_put_pixel_to_image(t_a *a, int y, int x, int color);
+void 		init(t_a *a);
+void		send_map_to_struct(t_a all, char *str, int y);
 void		ft_print_struct(t_map **map, int max_line, int nb_caract);
-void 		ft_print_map_to_image(t_all *all);
-int		my_fonct_key(int keycode, t_all *all);
-void	ft_modif_up(t_all *all);
-void	ft_modif_down(t_all *all);
-void	ft_modif_left(t_all *all);
-void	ft_modif_right(t_all *all);
+void 		ft_print_map_to_image(t_a *a);
+int		my_fonct_key(int keycode, t_a *a);
+void	ft_modif_up(t_a *a);
+void	ft_modif_down(t_a *a);
+void	ft_modif_left(t_a *a);
+void	ft_modif_right(t_a *a);
 void		ft_error(char *str);
-void	ft_modif_plus(t_all *all);
-void	ft_modif_minus(t_all *all);
+void	ft_modif_plus(t_a *a);
+void	ft_modif_minus(t_a *a);
 
 
 
-int		my_fonct_key(int keycode, t_all *all);
+int		my_fonct_key(int keycode, t_a *a);
 int	count_carac(char *line);
 
-t_map	**fonction_creat_struct(t_all *all);
+t_map	**fonction_creat_struct(t_a *a);
 
 #endif

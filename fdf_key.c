@@ -12,96 +12,96 @@
 
 #include "fdf.h"
 
-void	ft_modif_up(t_all *all)
+void	ft_modif_plus(t_a *a)
 {
 	int i;
-
-	all->env.origin_y -= 10;
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl, &all->env.ed);
-	all->env.bpp /= 8;
-	if (all->env.data == NULL)
-		ft_error("probleme get_data");
-	ft_print_map_to_image(all);
-}
-
-void	ft_modif_plus(t_all *all)
-{
-	int i;
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
-			&all->env.ed);
-	all->env.bpp /= 8;
-	i = all->env.space;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl,
+			&a->e.ed);
+	a->e.bpp /= 8;
+	i = a->e.space;
 	i += 1;
 	if (i >= 0)
-		all->env.space += 1;
+		a->e.space += 1;
 	else
-		all->env.space = 1;
-	ft_print_map_to_image(all);
+		a->e.space = 1;
+	ft_print_map_to_image(a);
 }
 
-void	ft_modif_minus(t_all *all)
+void	ft_modif_minus(t_a *a)
 {
 	int i;
 
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
-			&all->env.ed);
-	all->env.bpp /= 8;
-	i = all->env.space;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl,
+			&a->e.ed);
+	a->e.bpp /= 8;
+	i = a->e.space;
 	i -= 1;
 	if (i >= 0)
-		all->env.space -= 1;
+		a->e.space -= 1;
 	else
-		all->env.space = 1;
-	ft_print_map_to_image(all);
+		a->e.space = 1;
+	ft_print_map_to_image(a);
 }
 
-void	ft_modif_down(t_all *all)
+void	ft_modif_up(t_a *a)
 {
 	int i;
 
-	all->env.origin_y += 10;
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
-			&all->env.ed);
-			all->env.bpp /= 8;
-	if (all->env.data == NULL)
+	a->e.origin_y -= 10;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
+	a->e.bpp /= 8;
+	if (a->e.data == NULL)
 		ft_error("probleme get_data");
-	ft_print_map_to_image(all);
+	ft_print_map_to_image(a);
 }
 
-void	ft_modif_left(t_all *all)
+void	ft_modif_down(t_a *a)
 {
 	int i;
 
-	all->env.origin_x -= 10;
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
-			&all->env.ed);
-			all->env.bpp /= 8;
-	if (all->env.data == NULL)
+	a->e.origin_y += 10;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl,
+			&a->e.ed);
+			a->e.bpp /= 8;
+	if (a->e.data == NULL)
 		ft_error("probleme get_data");
-	ft_print_map_to_image(all);
+	ft_print_map_to_image(a);
 }
 
-void	ft_modif_right(t_all *all)
+void	ft_modif_left(t_a *a)
 {
 	int i;
 
-	all->env.origin_x += 10;
-	mlx_clear_window(all->env.mlx, all->env.win);
-	all->env.img = mlx_new_image(all->env.mlx, all->env.size_x, all->env.size_y);
-	all->env.data = mlx_get_data_addr(all->env.img, &all->env.bpp, &all->env.sl,
-			&all->env.ed);
-			all->env.bpp /= 8;
-	if (all->env.data == NULL)
+	a->e.origin_x -= 10;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl,
+			&a->e.ed);
+			a->e.bpp /= 8;
+	if (a->e.data == NULL)
 		ft_error("probleme get_data");
-	ft_print_map_to_image(all);
+	ft_print_map_to_image(a);
+}
+
+void	ft_modif_right(t_a *a)
+{
+	int i;
+
+	a->e.origin_x += 10;
+	mlx_clear_window(a->e.mlx, a->e.win);
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl,
+			&a->e.ed);
+			a->e.bpp /= 8;
+	if (a->e.data == NULL)
+		ft_error("probleme get_data");
+	ft_print_map_to_image(a);
 }
