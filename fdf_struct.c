@@ -12,6 +12,16 @@
 
 #include "fdf.h"
 
+void	define_struct(t_a *a)
+{
+	a->e.size = 1300;
+	a->e.origin_y = 300;
+	a->e.origin_x = 300;
+	a->e.space = 10;
+	a->e.zoom_in = 1;
+	a->e.zoom_out = 1;
+}
+
 int	count_carac(char *line)
 {
 	int index;

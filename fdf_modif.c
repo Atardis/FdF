@@ -12,15 +12,6 @@
 
 #include "fdf.h"
 
-void	define_struct(t_a *a)
-{
-	a->e.size_x = 1000;
-	a->e.size_y = 1000;
-	a->e.origin_y = 300;
-	a->e.origin_x = 300;
-	a->e.space = 10;
-}
-
 void fdf_modif_left(t_a *a)
 {
   int y;
@@ -32,11 +23,7 @@ void fdf_modif_left(t_a *a)
   {
     x = -1;
     while (++x < a->e.nb_caract)
-    {
-      a->map[y][x].x -= 5;
-      if (a->map[y][x].x < 0)
-        a->map[y][x].x = a->e.size_x - a->map[y][x].x;
-    }
+		a->map[y][x].x -= 10;
   }
   fdf_new_image(a);
   ft_print_map_to_image(a);
@@ -52,11 +39,7 @@ void fdf_modif_right(t_a *a)
   {
     x = -1;
     while (++x < a->e.nb_caract)
-    {
-      a->map[y][x].x += 5;
-      if (a->map[y][x].x > a->e.size_x)
-        a->map[y][x].x = a->map[y][x].x - a->e.size_x;
-    }
+		a->map[y][x].x += 10;  
   }
   fdf_new_image(a);
   ft_print_map_to_image(a);
@@ -72,11 +55,8 @@ void fdf_modif_up(t_a *a)
   {
     x = -1;
     while (++x < a->e.nb_caract)
-    {
-			a->map[y][x].y -= 5;
-      if (a->map[y][x].y < 0)
-        a->map[y][x].y = a->e.size_y + a->map[y][x].y;
-    }
+		a->map[y][x].y -= 10;
+
   }
   fdf_new_image(a);
   ft_print_map_to_image(a);
@@ -92,11 +72,7 @@ void fdf_modif_down(t_a *a)
   {
     x = -1;
     while (++x < a->e.nb_caract)
-    {
-			a->map[y][x].y += 5;
-      if (a->map[y][x].y > a->e.size_y)
-        a->map[y][x].y = a->map[y][x].y - a->e.size_y;
-    }
+		a->map[y][x].y += 10;
   }
   fdf_new_image(a);
   ft_print_map_to_image(a);
@@ -104,7 +80,7 @@ void fdf_modif_down(t_a *a)
 
 void fdf_new_image(t_a *a)
 {
-  a->e.img = mlx_new_image(a->e.mlx, a->e.size_x, a->e.size_y);
+  a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
   a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
   a->e.bpp /= 8;
   if (a->e.data == NULL)
