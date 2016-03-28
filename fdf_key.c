@@ -23,13 +23,14 @@ void	ft_modif_plus(t_a *a)
 		x = -1;
 		while (++x < a->e.nb_caract)
 		{
-			a->map[y][x].x *= 2;
-			a->map[y][x].y *= 2;
+			a->map[y][x].x *= 1.1;
+			a->map[y][x].y *= 1.1;
 		}
 	}
 	mlx_clear_window(a->e.mlx, a->e.win);
 	fdf_new_image(a);
-	ft_print_map_to_image(a);
+	ft_print_to_image_bresenham(a);
+	//ft_print_map_to_image(a);
 }
 
 void	ft_modif_minus(t_a *a)
@@ -43,11 +44,12 @@ void	ft_modif_minus(t_a *a)
 		x = -1;
 		while (++x < a->e.nb_caract)
 		{
-			a->map[y][x].x /= 2;
-			a->map[y][x].y /= 2;
+			a->map[y][x].x /= 1.1;
+			a->map[y][x].y /= 1.1;
 		}
 	}
 	mlx_clear_window(a->e.mlx, a->e.win);
 	fdf_new_image(a);
-	ft_print_map_to_image(a);
+	//ft_print_map_to_image(a);
+	ft_print_to_image_bresenham(a);
 }

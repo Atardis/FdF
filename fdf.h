@@ -102,8 +102,9 @@ void		fdf_new_image(t_a *a);
 
 void		ft_print_to_image_bresenham(t_a *a);
 int			recover_point_line(t_a *a, int x, int y);
+int			recover_point_column(t_a *a, int x, int y);
 void		line_tracer(t_a *a);
-
+void 		ligne(t_a *a);
 
 
 int		my_fonct_key(int keycode, t_a *a);

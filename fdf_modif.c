@@ -26,7 +26,7 @@ void fdf_modif_left(t_a *a)
 		a->map[y][x].x -= 10;
   }
   fdf_new_image(a);
-  ft_print_map_to_image(a);
+  ft_print_to_image_bresenham(a);
 }
 
 void fdf_modif_right(t_a *a)
@@ -42,7 +42,7 @@ void fdf_modif_right(t_a *a)
 		a->map[y][x].x += 10;  
   }
   fdf_new_image(a);
-  ft_print_map_to_image(a);
+  ft_print_to_image_bresenham(a);
 }
 
 void fdf_modif_up(t_a *a)
@@ -58,8 +58,8 @@ void fdf_modif_up(t_a *a)
 		a->map[y][x].y -= 10;
 
   }
-  fdf_new_image(a);
-  ft_print_map_to_image(a);
+	fdf_new_image(a);
+	ft_print_to_image_bresenham(a);
 }
 
 void fdf_modif_down(t_a *a)
@@ -75,14 +75,13 @@ void fdf_modif_down(t_a *a)
 		a->map[y][x].y += 10;
   }
   fdf_new_image(a);
-  ft_print_map_to_image(a);
+  ft_print_to_image_bresenham(a);
 }
 
 void fdf_new_image(t_a *a)
 {
   a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
   a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
-  a->e.bpp /= 8;
   if (a->e.data == NULL)
   	ft_error("probleme get_data");
 }

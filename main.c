@@ -33,8 +33,8 @@ int		my_fonct_key(int keycode, t_a *a)
 
 void ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 {
-	if (x >= 0 && x <= a->e.size && y >= 0 && y <= a->e.size)
-		*(unsigned int*)(a->e.data + (x * a->e.bpp) + (y * a->e.sl)) = color;
+	if (x >= 0 && x < a->e.size && y >= 0 && y < a->e.size)
+		*(unsigned int*)(a->e.data + (x * (a->e.bpp / 8)) + (y * a->e.sl)) = color;
 }
 
 
@@ -44,9 +44,7 @@ void init(t_a *a)
 	  ft_error("initialisation mlx_init error");
 	if (!(a->e.win = mlx_new_window(a->e.mlx, a->e.size, a->e.size, "Yolo")))
 		ft_error("initialisation mlx_new_windows error");
-	a->e.img = mlx_new_image(a->e.mlx, a->e.size + 1 , a->e.size + 1);
-	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
-	a->e.bpp /= 8;
+	fdf_new_image(a);
 }
 
 int main(int argc, char **argv)
@@ -82,7 +80,7 @@ int main(int argc, char **argv)
 		send_map_to_struct(a, line, y);
 	init(&a);
 	ft_print_to_image_bresenham(&a);
-//	ft_print_map_to_image(&a);
+	//ft_print_map_to_image(&a);
 	mlx_hook(a.e.win, 2, (1L<<01), my_fonct_key, &a);
 	mlx_loop(a.e.mlx);
 	return (0);
