@@ -16,7 +16,6 @@ void fdf_modif_pos(t_a *a, int keycode)
 {
   int y;
   int x;
-  int i;
 
   y = -1;
   while (++y < a->e.max_line)
@@ -65,8 +64,6 @@ void	ft_modif_size(t_a *a, int keycode)
 	fdf_new_image(a);
 	ft_print_to_image_bresenham(a);
 }
-
-
 
 void fdf_new_image(t_a *a)
 {
