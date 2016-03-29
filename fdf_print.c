@@ -18,52 +18,6 @@ void		ft_error(char *str)
 	exit(1);
 }
 
-// void ft_print_map_to_image(t_a *a)
-// {
-// 	int y;
-// 	int x;
-// 	int color;
-// 	int color2;
-// 	int i;
-
-// 	color = 0xFFFFFF;
-// 	y = -1;
-// 	while (++y < a->e.max_line)
-// 	{
-// 		x = -1;
-// 		while (++x < a->e.nb_caract)
-// 		{
-// 			if (a->map[y][x].z == 0)
-// 				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, color);
-// 			else
-// 				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, 0xFF0000);
-// 		}
-// 	}
-// 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
-// 	i = mlx_destroy_image(a->e.mlx, a->e.img);
-// }
-
-// void		ft_print_to_image(t_a *a)
-// {
-// 	int y;
-// 	int x;
-
-// 	y = -1;
-// 	while (++y < a->e.max_line)
-// 	{
-// 		x = -1;
-// 		while (++x < a->e.nb_caract)
-// 		{
-// 			if (a->map[y][x].z == 0)
-// 				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, 0xFFFFFF);
-// 			else
-// 				ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, 0xFF0000);
-// 		}
-// 	}
-// 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
-// 	mlx_destroy_image(a->e.mlx, a->e.img);
-// }
-
 void		ft_print_to_image_bresenham(t_a *a)
 {
 	int y;
@@ -76,24 +30,24 @@ void		ft_print_to_image_bresenham(t_a *a)
 		x = -1;
 		while (++x <= a->e.nb_caract)
 		{
-			if ((i = recover_point_line(a, x, y)) > 0)
+			if ((i = recover_point(a, x, y, 'x')) > 0)
 				ligne(a);
-			if ((i = recover_point_column(a, x, y)) > 0)
+			if ((i = recover_point(a, x, y, 'y')) > 0)
 				ligne(a);
-			ft_put_pixel_to_image(a, a->map[y][x].y, a->map[y][x].x, 0xFFFFFF);
 		}
 	}
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
 
-
-int			recover_point_line(t_a *a, int x, int y)
+int			recover_point(t_a *a, int x, int y, char c)
 {
 	int X;
+	int Y;
 
 	X = 1 + x;
-	if (x < a->e.nb_caract && X < a->e.nb_caract)
+	Y = 1 + y;
+	if (x < a->e.nb_caract && X < a->e.nb_caract && c == 'x')
 	{
 		a->p1.x = a->map[y][x].x;
 		a->p1.y = a->map[y][x].y;
@@ -101,15 +55,7 @@ int			recover_point_line(t_a *a, int x, int y)
 		a->p2.y = a->map[y][X].y;
 		return (1);
 	}
-	return (0);
-}
-
-int			recover_point_column(t_a *a, int x, int y)
-{
-	int Y;
-
-	Y = 1 + y;
-	if (y < a->e.max_line && Y < a->e.max_line)
+	else if (y < a->e.max_line && Y < a->e.max_line && c == 'y')
 	{
 		a->p1.x = a->map[y][x].x;
 		a->p1.y = a->map[y][x].y;

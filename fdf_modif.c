@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void fdf_modif_left(t_a *a)
+void fdf_modif_pos(t_a *a, int keycode)
 {
   int y;
   int x;
@@ -23,60 +23,50 @@ void fdf_modif_left(t_a *a)
   {
     x = -1;
     while (++x < a->e.nb_caract)
-		a->map[y][x].x -= 10;
+	{
+		if (keycode == LEFT)
+			a->map[y][x].x -= 10;
+		else if (keycode == RIGHT)
+			a->map[y][x].x += 10;
+		else if (keycode == UP)
+			a->map[y][x].y -= 10;
+		else if (keycode == DOWN)
+			a->map[y][x].y += 10;
+	}
   }
   fdf_new_image(a);
   ft_print_to_image_bresenham(a);
 }
 
-void fdf_modif_right(t_a *a)
+void	ft_modif_size(t_a *a, int keycode)
 {
-  int y;
-  int x;
+	int x;
+	int y;
 
-  y = -1;
-  while (++y < a->e.max_line)
-  {
-    x = -1;
-    while (++x < a->e.nb_caract)
-		a->map[y][x].x += 10;  
-  }
-  fdf_new_image(a);
-  ft_print_to_image_bresenham(a);
-}
-
-void fdf_modif_up(t_a *a)
-{
-  int y;
-  int x;
-
-  y = -1;
-  while (++y < a->e.max_line)
-  {
-    x = -1;
-    while (++x < a->e.nb_caract)
-		a->map[y][x].y -= 10;
-
-  }
+	y = -1;
+	while (++y < a->e.max_line)
+	{
+		x = -1;
+		while (++x < a->e.nb_caract)
+		{
+			if (keycode == PLUS)
+			{
+				a->map[y][x].x *= 1.1;
+				a->map[y][x].y *= 1.1;
+			}
+			else
+			{
+				a->map[y][x].x /= 1.1;
+				a->map[y][x].y /= 1.1;
+			}
+		}
+	}
+	mlx_clear_window(a->e.mlx, a->e.win);
 	fdf_new_image(a);
 	ft_print_to_image_bresenham(a);
 }
 
-void fdf_modif_down(t_a *a)
-{
-  int y;
-  int x;
 
-	y = -1;
-  while (++y < a->e.max_line)
-  {
-    x = -1;
-    while (++x < a->e.nb_caract)
-		a->map[y][x].y += 10;
-  }
-  fdf_new_image(a);
-  ft_print_to_image_bresenham(a);
-}
 
 void fdf_new_image(t_a *a)
 {

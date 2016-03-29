@@ -16,18 +16,10 @@ int		my_fonct_key(int keycode, t_a *a)
 {
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
-	if (keycode == UP)
-		fdf_modif_up(a);
-	if (keycode == DOWN)
-		fdf_modif_down(a);
-	if (keycode == LEFT)
-		fdf_modif_left(a);
-	if (keycode == RIGHT)
-		fdf_modif_right(a);
-	if (keycode == PLUS)
-		ft_modif_plus(a);
-	if (keycode == MINUS)
-		ft_modif_minus(a);
+	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
+		fdf_modif_pos(a, keycode);
+	if (keycode == PLUS || keycode == MINUS)
+		ft_modif_size(a, keycode);
 	return (0);
 }
 

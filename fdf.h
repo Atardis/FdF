@@ -94,15 +94,12 @@ void		ft_modif_plus(t_a *a);
 void		ft_modif_minus(t_a *a);
 void		define_struct(t_a *a);
 
-void 		fdf_modif_left(t_a *a);
-void 		fdf_modif_up(t_a *a);
-void		fdf_modif_right(t_a *a);
-void 		fdf_modif_down(t_a *a);
+void		fdf_modif_pos(t_a *a, int keycode);
+void		ft_modif_size(t_a *a, int keycode);
 void		fdf_new_image(t_a *a);
 
 void		ft_print_to_image_bresenham(t_a *a);
-int			recover_point_line(t_a *a, int x, int y);
-int			recover_point_column(t_a *a, int x, int y);
+int			recover_point(t_a *a, int x, int y, char c);
 void		line_tracer(t_a *a);
 void 		ligne(t_a *a);
 
