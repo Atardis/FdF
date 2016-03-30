@@ -67,7 +67,7 @@ t_map	**fonction_creat_struct(t_a *a)
 	return(a->map);
 }
 
-void		send_map_to_struct(t_a a, char *str, int y)
+void		send_map_to_struct(t_a *a, char *str, int y)
 {
 	int i;
 	int x;
@@ -76,15 +76,15 @@ void		send_map_to_struct(t_a a, char *str, int y)
 	i = 0;
 	find = 0;
 	x = 0;
-	while (str[i] && y < a.e.max_line)
+	while (str[i] && y < a->e.max_line)
 	{
 		while (str[i] != '-' && (str[i] < '0' || str[i] > '9'))
 			i++;
 		while ((str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) && find == 0 &&
-			x < a.e.nb_caract)
+			x < a->e.nb_caract)
 		{
 			find = 1;
-			a.map[y][x].z = ft_atoi_re(str, i);
+			a->map[y][x].z = ft_atoi_re(str, i);
 			x++;
 		}
 		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') ||

@@ -67,8 +67,9 @@ void	ft_modif_size(t_a *a, int keycode)
 
 void fdf_new_image(t_a *a)
 {
-  a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
-  a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
-  if (a->e.data == NULL)
-  	ft_error("probleme get_data");
+	a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
+	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
+	if (a->e.data == NULL)
+		ft_error("probleme get_data");
+	a->e.bpp /= 8;
 }

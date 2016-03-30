@@ -18,24 +18,47 @@ void		ft_error(char *str)
 	exit(1);
 }
 
-void		ft_print_to_image_bresenham(t_a *a)
+static void		ft_print_map(t_a *a)
 {
 	int y;
 	int x;
-	int i;
 
 	y = -1;
 	while (++y < a->e.max_line)
 	{
 		x = -1;
-		while (++x <= a->e.nb_caract)
+		while (++x < a->e.nb_caract)
 		{
-			if ((i = recover_point(a, x, y, 'x')) > 0)
+			ft_putnbr(a->map[y][x].x);
+			ft_putchar(':');
+			ft_putnbr(a->map[y][x].y);
+			if (y < a->e.max_line - 1)
+				ft_putstr("   ");
+			else
+				ft_putstr("  ");
+		}
+		ft_putchar('\n');
+	}
+}
+
+void		ft_print_to_image_bresenham(t_a *a)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < a->e.max_line)
+	{
+		x = -1;
+		while (++x < a->e.nb_caract)
+		{
+			if ((recover_point(a, x, y, 'x')) > 0)
 				ligne(a);
-			if ((i = recover_point(a, x, y, 'y')) > 0)
+			if ((recover_point(a, x, y, 'y')) > 0)
 				ligne(a);
 		}
 	}
+	//ft_print_map(a);
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
@@ -47,7 +70,7 @@ int			recover_point(t_a *a, int x, int y, char c)
 
 	X = 1 + x;
 	Y = 1 + y;
-	if (x < a->e.nb_caract && X < a->e.nb_caract && c == 'x')
+	if (x < a->e.nb_caract && X < a->e.nb_caract && c == 'x' && x >= 0)
 	{
 		a->p1.x = a->map[y][x].x;
 		a->p1.y = a->map[y][x].y;
@@ -55,7 +78,7 @@ int			recover_point(t_a *a, int x, int y, char c)
 		a->p2.y = a->map[y][X].y;
 		return (1);
 	}
-	else if (y < a->e.max_line && Y < a->e.max_line && c == 'y')
+	if (y < a->e.max_line && Y < a->e.max_line && c == 'y' && y >= 0)
 	{
 		a->p1.x = a->map[y][x].x;
 		a->p1.y = a->map[y][x].y;
@@ -81,10 +104,10 @@ void ligne(t_a *a)
 	y = a->p1.y ;
 	dx = a->p2.x - a->p1.x;
 	dy = a->p2.y - a->p1.y;
-	xinc = ( dx > 0 ) ? 1 : -1 ;
-	yinc = ( dy > 0 ) ? 1 : -1 ;
-	dx = abs(dx) ;
-	dy = abs(dy) ;
+	xinc = (dx > 0) ? 1 : -1;
+	yinc = (dy > 0) ? 1 : -1;
+	dx = abs(dx);
+	dy = abs(dy);
 	ft_put_pixel_to_image(a, y, x, 0xFF0000);
 	if ( dx > dy )
 	{
