@@ -29,6 +29,17 @@
 #define M 46
 #define N 45
 
+#define BLUE 0x0901F7
+#define BLUE_C 0x015BF7
+#define SKY 0x01B5F7
+#define LAGON 0x01F7F7
+#define WGREEN 0x01F79D
+#define RAZER 0x01F74B
+#define LIMON 0xADF701
+#define YELLOW 0xEFF701
+#define ORANGE 0xF78C01
+#define RED 0xF70101
+
 typedef struct		s_fdfstore
 {
 	double			x;
@@ -67,6 +78,9 @@ typedef struct		s_environ
 	double				size_Y;
 	double				move_x;
 	double				move_y;
+	double				z_max;
+	double				z_min;
+	double				distance_z;
 }					t_env;
 
 typedef struct 		s_trace
@@ -113,7 +127,8 @@ void 		ligne(t_a *a, int	color);
 void 		fdf_recover_size(t_a *a);
 void 		fdf_recover_size_o(t_a *a);
 void move_map(t_a *a);
-
+void size_z_max_min(t_a *a);
+void size_max_z_to_min_z(t_a *a);
 
 
 int		my_fonct_key(int keycode, t_a *a);

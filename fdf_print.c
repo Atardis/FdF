@@ -49,7 +49,7 @@ void		ft_print_to_image_bresenham(t_a *a)
 			if ((recover_point(a, x, y, 'x')) > 0)
 			{
 				if (a->map[y][x + 1].z > 0 || a->map[y][x].z > 0)
-					 ligne(a , 0xFF0000);
+					 ligne(a , 0xF70101);
 				else if (a->map[y][x + 1].z < 0 || a->map[y][x].z < 0)
 						ligne(a, 0x00FFFF);
 				else
@@ -58,7 +58,7 @@ void		ft_print_to_image_bresenham(t_a *a)
 			if ((recover_point(a, x, y, 'y')) > 0)
 			{
 				if (a->map[y + 1][x].z > 0 || a->map[y][x].z > 0)
-					 ligne(a , 0xFF0000);
+					 ligne(a , 0xF70101);
 				else if (a->map[y][x + 1].z < 0 || a->map[y][x].z < 0)
 	 					ligne(a, 0x00FFFF);
 				else

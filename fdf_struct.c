@@ -43,6 +43,43 @@ int	count_carac(char *line)
 	return (count);
 }
 
+void size_z_max_min(t_a *a)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < a->e.max_line)
+	{
+		x = -1;
+		while (++x < a->e.nb_caract)
+		{
+			if (a->map[y][x].z > a->e.z_max)
+				a->e.z_max = a->map[y][x].z;
+			else if (a->map[y][x].z < a->e.z_min)
+				a->e.z_min = a->map[y][x].z;
+		}
+	}
+}
+
+void size_max_z_to_min_z(t_a *a)
+{
+	int i;
+
+	if (a->e.z_min < 0)
+		a->e.distance_z = a->e.z_max - a->e.z_min;
+	else if (a->e.z_min > 0)
+		a->e.distance_z = a->e.z_max + a->e.z_min;
+}
+
+void put_color(t_a *a)
+{
+	int	result;
+
+	result = a->e.distance_z / 10;
+	
+}
+
 t_map					**fonction_creat_struct(t_a *a)
 {
 	unsigned int	y;
