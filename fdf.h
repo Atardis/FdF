@@ -26,6 +26,8 @@
 #define RIGHT 124
 #define PLUS 69
 #define MINUS 78
+#define M 46
+#define N 45
 
 typedef struct		s_fdfstore
 {
@@ -38,26 +40,33 @@ typedef struct		s_fdfstore
 
 typedef struct		s_environ
 {
-	void 			*mlx;
-	void 			*win;
-	void 			*img;
+	void 				*mlx;
+	void 				*win;
+	void 				*img;
 
-	char 			*data;
+	char 				*data;
 
-	int 			fd;
-	int				width;
-	int				height;
-	int 			size;
-	int				bpp;
-	int 			sl;
-	int 			ed;
-	int				origin_x;
-	int				origin_y;
-	int 			space;
-	int				zoom_in;
-	int 			zoom_out;
+	int 				fd;
+	int					width;
+	int					height;
+	int 				size;
+	int					bpp;
+	int 				sl;
+	int 				ed;
+	int					origin_x;
+	int					origin_y;
+	int 				space;
+	int					zoom_in;
+	int 				zoom_out;
 	unsigned 		max_line;
 	unsigned 		nb_caract;
+
+	double				size_x;
+	double				size_y;
+	double				size_X;
+	double				size_Y;
+	double				move_x;
+	double				move_y;
 }					t_env;
 
 typedef struct 		s_trace
@@ -100,8 +109,11 @@ void		fdf_new_image(t_a *a);
 
 void		ft_print_to_image_bresenham(t_a *a);
 int			recover_point(t_a *a, int x, int y, char c);
-void		line_tracer(t_a *a);
-void 		ligne(t_a *a);
+void 		ligne(t_a *a, int	color);
+void 		fdf_recover_size(t_a *a);
+void 		fdf_recover_size_o(t_a *a);
+void move_map(t_a *a);
+
 
 
 int		my_fonct_key(int keycode, t_a *a);

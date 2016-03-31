@@ -18,7 +18,7 @@ void		ft_error(char *str)
 	exit(1);
 }
 
-static void		ft_print_map(t_a *a)
+void move_map(t_a *a)
 {
 	int y;
 	int x;
@@ -29,15 +29,9 @@ static void		ft_print_map(t_a *a)
 		x = -1;
 		while (++x < a->e.nb_caract)
 		{
-			ft_putnbr(a->map[y][x].x);
-			ft_putchar(':');
-			ft_putnbr(a->map[y][x].y);
-			if (y < a->e.max_line - 1)
-				ft_putstr("   ");
-			else
-				ft_putstr("  ");
+			a->map[y][x].x -= (a->e.move_x);
+			a->map[y][x].y -= (a->e.move_y);
 		}
-		ft_putchar('\n');
 	}
 }
 
@@ -53,12 +47,26 @@ void		ft_print_to_image_bresenham(t_a *a)
 		while (++x < a->e.nb_caract)
 		{
 			if ((recover_point(a, x, y, 'x')) > 0)
-				ligne(a);
+			{
+				if (a->map[y][x + 1].z > 0 || a->map[y][x].z > 0)
+					 ligne(a , 0xFF0000);
+				else if (a->map[y][x + 1].z < 0 || a->map[y][x].z < 0)
+						ligne(a, 0x00FFFF);
+				else
+						ligne(a, 0xFFFFFF);
+			}
 			if ((recover_point(a, x, y, 'y')) > 0)
-				ligne(a);
+			{
+				if (a->map[y + 1][x].z > 0 || a->map[y][x].z > 0)
+					 ligne(a , 0xFF0000);
+				else if (a->map[y][x + 1].z < 0 || a->map[y][x].z < 0)
+	 					ligne(a, 0x00FFFF);
+				else
+						ligne(a, 0xFFFFFF);
+			}
 		}
 	}
-	//ft_print_map(a);
+	fdf_recover_size(a);
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
@@ -89,7 +97,7 @@ int			recover_point(t_a *a, int x, int y, char c)
 	return (0);
 }
 
-void ligne(t_a *a)
+void ligne(t_a *a, int	color)
 {
 	int dx;
 	int	dy;
@@ -108,7 +116,7 @@ void ligne(t_a *a)
 	yinc = (dy > 0) ? 1 : -1;
 	dx = abs(dx);
 	dy = abs(dy);
-	ft_put_pixel_to_image(a, y, x, 0xFF0000);
+	ft_put_pixel_to_image(a, y, x, color);
 	if ( dx > dy )
 	{
 		cumul = dx / 2;
@@ -116,12 +124,12 @@ void ligne(t_a *a)
 		{
 			x += xinc ;
 			cumul += dy ;
-			if ( cumul >= dx ) 
+			if ( cumul >= dx )
 			{
 				cumul -= dx ;
 				y += yinc ;
 			}
-			ft_put_pixel_to_image(a, y, x, 0xFF0000) ;
+			ft_put_pixel_to_image(a, y, x, color);
 		}
 	}
 	else
@@ -136,7 +144,7 @@ void ligne(t_a *a)
 				cumul -= dy ;
 				x += xinc;
 			}
-      		ft_put_pixel_to_image(a, y, x, 0xFF0000);
+      		ft_put_pixel_to_image(a, y, x, color);
 	  	}
 	}
 }

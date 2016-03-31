@@ -14,7 +14,6 @@
 
 int				my_fonct_key(int keycode, t_a *a)
 {
-	ft_putnbr_end(keycode);
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend");
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
