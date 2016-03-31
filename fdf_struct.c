@@ -74,11 +74,45 @@ void size_max_z_to_min_z(t_a *a)
 
 void put_color(t_a *a)
 {
-	int	result;
+	int y;
+	int x;
 
-	result = a->e.distance_z / 10;
-	
+	y = -1;
+	while (++y < a->e.max_line)
+	{
+		x = -1;
+		while (++X < a->e.nb_caract)
+			a->map[y][x].color = (localisation_color(a, a->map[y][x].z));
+	}
 }
+
+int	localisation_color(t_a *a, int z)
+{
+	int r;
+
+	r = a->e.distance_z / 10;
+	if (z >= a->e.z_min && z < (a->e.z_min + (r * 1)))
+		return (RED);
+	else if (z >= (a->e.z_min + (r * 1) && z < (a->e.z_min + (r * 2))))
+		return (ORANGE);
+	else if (z >= (a->e.z_min + (r * 2) && z < (a->e.z_min + (r * 3))))
+		return (YELLOW);
+	else if (z >= (a->e.z_min + (r * 3) && z < (a->e.z_min + (r * 4))))
+		return (LIMON);
+	else if (z >= (a->e.z_min + (r * 4) && z < (a->e.z_min + (r * 5))))
+		return (RAZER);
+	else if (z >= (a->e.z_min + (r * 5) && z < (a->e.z_min + (r * 6))))
+		return (WGREEN);
+	else if (z >= (a->e.z_min + (r * 6) && z < (a->e.z_min + (r * 7))))
+		return (LAGON);
+	else if (z >= (a->e.z_min + (r * 7) && z < (a->e.z_min + (r * 8))))
+		return (SKY);
+	else if (z >= (a->e.z_min + (r * 8) && z < (a->e.z_min + (r * 9))))
+		return (BLUE_C);
+	else if (z >= (a->e.z_min + (r * 9) && z <= a->e.distance_z))
+		return (BLUE);
+}
+
 
 t_map					**fonction_creat_struct(t_a *a)
 {

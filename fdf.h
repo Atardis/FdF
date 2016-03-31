@@ -129,6 +129,10 @@ void 		fdf_recover_size_o(t_a *a);
 void move_map(t_a *a);
 void size_z_max_min(t_a *a);
 void size_max_z_to_min_z(t_a *a);
+int	localisation_color(t_a *a, int z);
+void put_color(t_a *a);
+
+
 
 
 int		my_fonct_key(int keycode, t_a *a);
