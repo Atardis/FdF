@@ -32,13 +32,13 @@
 #define BLUE 0x0901F7
 #define BLUE_C 0x015BF7
 #define SKY 0x01B5F7
-#define LAGON 0x01F7F7
+#define LAGON 0x33AB9B
 #define WGREEN 0x01F79D
 #define RAZER 0x01F74B
 #define LIMON 0xADF701
 #define YELLOW 0xEFF701
 #define ORANGE 0xF78C01
-#define RED 0xF70101
+#define RED 0xFE4D01
 
 typedef struct		s_fdfstore
 {

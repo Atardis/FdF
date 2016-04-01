@@ -75,6 +75,7 @@ int				main(int argc, char **argv)
 	a.e.max_line = 0;
 	a.e.nb_caract = 0;
 	read_file(&a, argv[1], y, i);
+	size_z_max_min(&a);
 	init(&a);
 	ft_print_to_image_bresenham(&a);
 	mlx_hook(a.e.win, 2, (1L << 01), my_fonct_key, &a);
