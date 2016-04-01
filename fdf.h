@@ -29,6 +29,9 @@
 #define M 46
 #define N 45
 #define B 11
+#define EGAL 24
+#define UNDER 27
+#define I 34
 
 #define BLUE 0x0901F7
 #define BLUE_C 0x015BF7
@@ -40,7 +43,8 @@
 #define YELLOW 0xEFF701
 #define ORANGE 0xF78C01
 #define RED 0xFE4D01
-#define BACKGROUND 0xE6E2AF
+#define BACKGROUND 0x9A7CC1
+
 typedef struct		s_fdfstore
 {
 	double			x;
@@ -68,10 +72,8 @@ typedef struct		s_environ
 	int					origin_x;
 	int					origin_y;
 	int 				space;
-	int					zoom_in;
-	int 				zoom_out;
-	unsigned 		max_line;
-	unsigned 		nb_caract;
+	unsigned 		max_y;
+	unsigned 		max_x;
 
 	double				size_x;
 	double				size_y;
@@ -83,6 +85,7 @@ typedef struct		s_environ
 	double				z_min;
 	double				distance_z;
 	int						background;
+	int						info;
 }					t_env;
 
 typedef struct 		s_trace
@@ -107,8 +110,6 @@ void		ft_error(char *str);
 void 		ft_put_pixel_to_image(t_a *a, int y, int x, int color);
 void 		init_mxl(t_a *a);
 void		send_map_to_struct(t_a *a, char *str, int y);
-void		ft_print_struct(t_map **map, int max_line, int nb_caract);
-void 		ft_print_map_to_image(t_a *a);
 int			my_fonct_key(int keycode, t_a *a);
 void		ft_modif_up(t_a *a);
 void		ft_modif_down(t_a *a);
@@ -134,7 +135,9 @@ void size_max_z_to_min_z(t_a *a);
 int	localisation_color(t_a *a, int z);
 void put_color(t_a *a);
 void ft_background(t_a *a);
+void ft_modif_z(t_a *a, char c);
 
+void ft_put_info(t_a *a);
 
 
 

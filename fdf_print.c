@@ -24,10 +24,10 @@ void move_map(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			a->map[y][x].x -= (a->e.move_x);
 			a->map[y][x].y -= (a->e.move_y);
@@ -41,21 +41,60 @@ void		ft_print_to_image_bresenham(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			if ((recover_point(a, x, y, 'x')) > 0)
-				ligne(a , a->map[y][x].color);
+			{
+				if (a->map[y][x].z < a->map[y][x + 1].z)
+					ligne(a , a->map[y][x + 1].color);
+				else if (a->map[y][x].z > a->map[y][x + 1].z || a->map[y][x].z == a->map[y][x + 1].z)
+					ligne(a , a->map[y][x].color);
+			}
 			if ((recover_point(a, x, y, 'y')) > 0)
-				ligne(a , a->map[y][x].color);
+			{
+				if (a->map[y][x].z < a->map[y + 1][x].z)
+					ligne(a , a->map[y + 1][x].color);
+				else if (a->map[y][x].z > a->map[y + 1][x].z || a->map[y][x].z == a->map[y + 1][x].z)
+					ligne(a , a->map[y][x].color);
+			}
 		}
 	}
 	fdf_recover_size(a);
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
+	ft_put_info(a);
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
+
+void ft_put_info(t_a *a)
+{
+	char *str;
+
+	str = "Information touche I (on/off)";
+	mlx_string_put(a->e.mlx, a->e.win, 1600, 5, 0xFFFFFF, str);
+	if (a->e.info > 0)
+	{
+		str = "-----------------------";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 25, 0xFFFFFF, str);
+		str = "    Zoom In    = Touche +";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 40, 0xFFFFFF, str);
+		str = "    Zoom Out   = Touche -";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 60, 0xFFFFFF, str);
+		str = "   Background  = Touche B";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 80, 0xFFFFFF, str);
+		str = " Hauteur Plus  = Touche +/=";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 100, 0xFFFFFF, str);
+		str = "Hauteur Moins = Touche +/=";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 120, 0xFFFFFF, str);
+		str = "Hauteur Plus = Touche +/=";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 140, 0xFFFFFF, str);
+		str = "Hauteur Plus = Touche +/=";
+		mlx_string_put(a->e.mlx, a->e.win, 1600, 160, 0xFFFFFF, str);
+	}
+}
+
 
 int			recover_point(t_a *a, int x, int y, char c)
 {
@@ -64,20 +103,20 @@ int			recover_point(t_a *a, int x, int y, char c)
 
 	X = 1 + x;
 	Y = 1 + y;
-	if (x < a->e.nb_caract && X < a->e.nb_caract && c == 'x' && x >= 0)
+	if (x < a->e.max_x && X < a->e.max_x && c == 'x' && x >= 0)
 	{
-		a->p1.x = a->map[y][x].x;
-		a->p1.y = a->map[y][x].y;
-		a->p2.x = a->map[y][X].x;
-		a->p2.y = a->map[y][X].y;
+		a->p1.x = a->map[y][x].x + (a->map[y][x].y / 2);
+		a->p1.y = a->map[y][x].y - a->map[y][x].z;
+		a->p2.x = a->map[y][X].x + (a->map[y][X].y / 2);
+		a->p2.y = a->map[y][X].y - a->map[y][X].z;
 		return (1);
 	}
-	if (y < a->e.max_line && Y < a->e.max_line && c == 'y' && y >= 0)
+	if (y < a->e.max_y && Y < a->e.max_y && c == 'y' && y >= 0)
 	{
-		a->p1.x = a->map[y][x].x - 1;
-		a->p1.y = a->map[y][x].y;
-		a->p2.x = a->map[Y][x].x - 1;
-		a->p2.y = a->map[Y][x].y;
+		a->p1.x = a->map[y][x].x + (a->map[y][x].y / 2);
+		a->p1.y = a->map[y][x].y - a->map[y][x].z;
+		a->p2.x = a->map[Y][x].x + (a->map[Y][x].y / 2);
+		a->p2.y = a->map[Y][x].y - a->map[Y][x].z;
 		return (1);
 	}
 	return (0);

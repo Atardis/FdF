@@ -14,14 +14,14 @@
 
 void fdf_recover_size_o(t_a *a)
 {
-	a->e.size_x = (a->map[0][a->e.nb_caract - 1].x - a->map[0][0].x);
-	a->e.size_y = (a->map[a->e.max_line - 1][0].y - a->map[0][0].y);
+	a->e.size_x = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
+	a->e.size_y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
 void fdf_recover_size(t_a *a)
 {
-	a->e.size_X = (a->map[0][a->e.nb_caract - 1].x - a->map[0][0].x);
-	a->e.size_Y = (a->map[a->e.max_line - 1][0].y - a->map[0][0].y);
+	a->e.size_X = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
+	a->e.size_Y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
 void fdf_move(t_a *a)
@@ -36,10 +36,10 @@ void	fdf_modif_pos(t_a *a, int keycode)
 	int x;
 
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			if (keycode == LEFT)
 				a->map[y][x].x -= 10;
@@ -62,10 +62,10 @@ void	ft_modif_size(t_a *a, int keycode)
 
 	y = -1;
 	fdf_recover_size_o(a);
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			if (keycode == PLUS)
 			{
@@ -93,17 +93,17 @@ void ft_background(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < a->e.size)
+	while (++y < 1080)
 	{
 		x = -1;
-		while (++x < a->e.size)
+		while (++x < 1920)
 			ft_put_pixel_to_image(a, y, x, BACKGROUND);
 	}
 }
 
 void	fdf_new_image(t_a *a)
 {
-	a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
+	a->e.img = mlx_new_image(a->e.mlx, 1920, 1080);
 	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
 	if (a->e.data == NULL)
 		ft_error("probleme get_data");

@@ -14,12 +14,9 @@
 
 void	define_struct(t_a *a)
 {
-	a->e.size = 1300;
 	a->e.origin_y = 300;
 	a->e.origin_x = 300;
-	a->e.space = 10;
-	a->e.zoom_in = 1;
-	a->e.zoom_out = 1;
+
 }
 
 int	count_carac(char *line)
@@ -49,10 +46,10 @@ void size_z_max_min(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			if (a->map[y][x].z > a->e.z_max)
 				a->e.z_max = a->map[y][x].z;
@@ -61,6 +58,27 @@ void size_z_max_min(t_a *a)
 		}
 	}
 	size_max_z_to_min_z(a);
+}
+
+void ft_modif_z(t_a *a, char c)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < a->e.max_y)
+	{
+		x = -1;
+		while (++x < a->e.max_x)
+		{
+			if (c == '+')
+				a->map[y][x].z *= 1.1;
+			else if (c == '-')
+				a->map[y][x].z /= 1.1;
+		}
+	}
+	fdf_new_image(a);
+	ft_print_to_image_bresenham(a);
 }
 
 void size_max_z_to_min_z(t_a *a)
@@ -80,10 +98,10 @@ void put_color(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 			a->map[y][x].color = (localisation_color(a, a->map[y][x].z));
 	}
 }
@@ -122,15 +140,15 @@ t_map					**fonction_creat_struct(t_a *a)
 	unsigned int	y;
 	int						x;
 
-	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_line)))
+	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_y)))
 		ft_error("Malloc has Failed for the struct Y");
 	y = -1;
-	while (++y < a->e.max_line)
+	while (++y < a->e.max_y)
 	{
-		if (!(a->map[y] = (t_map *)malloc(sizeof(t_map) * a->e.nb_caract)))
+		if (!(a->map[y] = (t_map *)malloc(sizeof(t_map) * a->e.max_x)))
 			ft_error("Malloc has Failed for the struct X");
 		x = -1;
-		while (++x < a->e.nb_caract)
+		while (++x < a->e.max_x)
 		{
 			a->map[y][x].z = 0;
 			a->map[y][x].y = y;
@@ -150,12 +168,12 @@ void		send_map_to_struct(t_a *a, char *str, int y)
 	i = 0;
 	find = 0;
 	x = 0;
-	while (str[i] && y < a->e.max_line)
+	while (str[i] && y < a->e.max_y)
 	{
 		while (str[i] && str[i] != '-' && (str[i] < '0' || str[i] > '9'))
 			i++;
 		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9')) &&
-				find == 0 && x < a->e.nb_caract)
+				find == 0 && x < a->e.max_x)
 		{
 			find = 1;
 			a->map[y][x].z = ft_atoi_re(str, i);
