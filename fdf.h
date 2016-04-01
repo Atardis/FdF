@@ -28,6 +28,7 @@
 #define MINUS 78
 #define M 46
 #define N 45
+#define B 11
 
 #define BLUE 0x0901F7
 #define BLUE_C 0x015BF7
@@ -39,7 +40,7 @@
 #define YELLOW 0xEFF701
 #define ORANGE 0xF78C01
 #define RED 0xFE4D01
-
+#define BACKGROUND 0xE6E2AF
 typedef struct		s_fdfstore
 {
 	double			x;
@@ -81,6 +82,7 @@ typedef struct		s_environ
 	double				z_max;
 	double				z_min;
 	double				distance_z;
+	int						background;
 }					t_env;
 
 typedef struct 		s_trace
@@ -131,6 +133,7 @@ void size_z_max_min(t_a *a);
 void size_max_z_to_min_z(t_a *a);
 int	localisation_color(t_a *a, int z);
 void put_color(t_a *a);
+void ft_background(t_a *a);
 
 
 

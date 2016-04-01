@@ -87,6 +87,20 @@ void	ft_modif_size(t_a *a, int keycode)
 	ft_print_to_image_bresenham(a);
 }
 
+void ft_background(t_a *a)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < a->e.size)
+	{
+		x = -1;
+		while (++x < a->e.size)
+			ft_put_pixel_to_image(a, y, x, BACKGROUND);
+	}
+}
+
 void	fdf_new_image(t_a *a)
 {
 	a->e.img = mlx_new_image(a->e.mlx, a->e.size, a->e.size);
@@ -94,4 +108,6 @@ void	fdf_new_image(t_a *a)
 	if (a->e.data == NULL)
 		ft_error("probleme get_data");
 	a->e.bpp /= 8;
+	if (a->e.background < 0)
+		ft_background(a);
 }

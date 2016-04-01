@@ -20,6 +20,12 @@ int				my_fonct_key(int keycode, t_a *a)
 		fdf_modif_pos(a, keycode);
 	if (keycode == PLUS || keycode == MINUS)
 		ft_modif_size(a, keycode);
+	if (keycode == B)
+	{
+		a->e.background *= -1;
+		fdf_new_image(a);
+		ft_print_to_image_bresenham(a);
+	}
 	return (0);
 }
 
@@ -33,8 +39,9 @@ void			init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error");
-	if (!(a->e.win = mlx_new_window(a->e.mlx, a->e.size, a->e.size, "Yolo")))
+	if (!(a->e.win = mlx_new_window(a->e.mlx, a->e.size, a->e.size, "FDF")))
 		ft_error("initialisation mlx_new_windows error");
+	a->e.background = 1;
 	fdf_new_image(a);
 }
 

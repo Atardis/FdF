@@ -47,9 +47,9 @@ void		ft_print_to_image_bresenham(t_a *a)
 		while (++x < a->e.nb_caract)
 		{
 			if ((recover_point(a, x, y, 'x')) > 0)
-				ligne(a , a->map[y][x + 1].color);
+				ligne(a , a->map[y][x].color);
 			if ((recover_point(a, x, y, 'y')) > 0)
-				ligne(a , a->map[y + 1][x].color);
+				ligne(a , a->map[y][x].color);
 		}
 	}
 	fdf_recover_size(a);
@@ -74,9 +74,9 @@ int			recover_point(t_a *a, int x, int y, char c)
 	}
 	if (y < a->e.max_line && Y < a->e.max_line && c == 'y' && y >= 0)
 	{
-		a->p1.x = a->map[y][x].x;
+		a->p1.x = a->map[y][x].x - 1;
 		a->p1.y = a->map[y][x].y;
-		a->p2.x = a->map[Y][x].x;
+		a->p2.x = a->map[Y][x].x - 1;
 		a->p2.y = a->map[Y][x].y;
 		return (1);
 	}
