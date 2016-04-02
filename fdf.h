@@ -6,7 +6,7 @@
 /*   By: gahubaul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 01:42:23 by gahubaul          #+#    #+#             */
-/*   Updated: 2016/03/05 01:42:25 by gahubaul         ###   ########.fr       */
+/*   Updated: 2016/04/02 03:30:15 by gahubaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct 		s_all
 
 
 void		define_struct(t_a *a);
-void		ft_error(char *str);
+void		ft_error(char *str, t_a *a);
 void 		ft_put_pixel_to_image(t_a *a, int y, int x, int color);
 void 		init_mxl(t_a *a);
 void		send_map_to_struct(t_a *a, char *str, int y);
@@ -118,7 +118,6 @@ void		ft_modif_up(t_a *a);
 void		ft_modif_down(t_a *a);
 void		ft_modif_left(t_a *a);
 void		ft_modif_right(t_a *a);
-void		ft_error(char *str);
 void		ft_modif_plus(t_a *a);
 void		ft_modif_minus(t_a *a);
 void		define_struct(t_a *a);
@@ -138,10 +137,12 @@ void size_max_z_to_min_z(t_a *a);
 int	localisation_color(t_a *a, int z);
 void put_color(t_a *a);
 void ft_background(t_a *a);
-void ft_modif_z(t_a *a, char c);
+void ft_modif_z(t_a *a, int keycode);
 
 void ft_put_info(t_a *a);
 void print(t_a *a);
+double			distance(t_a *a);
+void iso_modif(t_a *a);
 
 
 

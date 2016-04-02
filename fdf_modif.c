@@ -42,13 +42,13 @@ void	fdf_modif_pos(t_a *a, int keycode)
 		while (++x < a->e.max_x)
 		{
 			if (keycode == LEFT)
-				a->map[y][x].x -= 10;
+				a->map[y][x].x -= 15;
 			else if (keycode == RIGHT)
-				a->map[y][x].x += 10;
+				a->map[y][x].x += 15;
 			else if (keycode == UP)
-				a->map[y][x].y -= 10;
+				a->map[y][x].y -= 15;
 			else if (keycode == DOWN)
-				a->map[y][x].y += 10;
+				a->map[y][x].y += 15;
 		}
 	}
 	fdf_new_image(a);
@@ -106,7 +106,7 @@ void	fdf_new_image(t_a *a)
 	a->e.img = mlx_new_image(a->e.mlx, 1920, 1080);
 	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
 	if (a->e.data == NULL)
-		ft_error("probleme get_data");
+		ft_error("probleme get_data", a);
 	a->e.bpp /= 8;
 	if (a->e.background < 0)
 		ft_background(a);

@@ -12,9 +12,10 @@
 
 #include "fdf.h"
 
-void		ft_error(char *str)
+void		ft_error(char *str, t_a *a)
 {
 	ft_putendl(str);
+	mlx_destroy_window(a->e.mlx, a->e.win);
 	exit(1);
 }
 

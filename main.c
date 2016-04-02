@@ -16,7 +16,7 @@ int				my_fonct_key(int keycode, t_a *a)
 {
 	ft_putnbr_end(keycode);
 	if (keycode == EXIT)
-		ft_error("ESC : Good Bye My Friend");
+		ft_error("ESC : Good Bye My Friend", a);
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 		fdf_modif_pos(a, keycode);
 	if (keycode == PLUS || keycode == MINUS)
@@ -27,22 +27,14 @@ int				my_fonct_key(int keycode, t_a *a)
 		print(a);
 	}
 	if (keycode == UNDER || keycode == EGAL)
-	{
-		if (keycode == EGAL)
-			ft_modif_z(a, '+');
-		else
-			ft_modif_z(a, '-');
-	}
+		ft_modif_z(a, keycode);
 	if (keycode == I)
 	{
 		a->e.info *= -1;
 		print(a);
 	}
 	if (keycode == T)
-	{
-		a->e.iso *= -1;
-		print(a);
-	}
+		iso_modif(a);
 	return (0);
 }
 
@@ -61,9 +53,9 @@ void			ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 void				init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
-		ft_error("initialisation mlx_init error");
+		ft_error("initialisation mlx_init error", a);
 	if (!(a->e.win = mlx_new_window(a->e.mlx, 1920, 1080, "FDF")))
-		ft_error("initialisation mlx_new_windows error");
+		ft_error("initialisation mlx_new_windows error", a);
 	a->e.background = 1;
 	a->e.info = -1;
 	a->e.iso = -1;
@@ -80,16 +72,16 @@ static void	read_file(t_a *a, char *str, int y, int i)
 			a->e.max_x = count_carac(line);
 		if (a->e.max_y != 0)
 			if (a->e.max_x != count_carac(line))
-				ft_error("Fichier Invalide");
+				ft_error("Fichier Invalide", a);
 		a->e.max_y++;
 		free(line);
 	}
 	if (a->e.tmp == -1)
-		ft_error("Probleme de Lecture / Pas bon fichier donné");
+		ft_error("Probleme de Lecture / Pas bon fichier donné", a);
 	close(a->e.fd);
 	a->map = fonction_creat_struct(a);
 	if ((a->e.fd = open(str, O_RDONLY)) == -1)
-		ft_error("Fichier Inexistant");
+		ft_error("Fichier Inexistant", a);
 	y = -1;
 	i = 0;
 	while ((i = get_next_line(a->e.fd, &line)) > 0 && ++y < a->e.max_y)
@@ -106,9 +98,9 @@ int					main(int argc, char **argv)
 	int				i;
 
 	if (argc < 2)
-		ft_error("Pas le bon nombre d'argument");
+		ft_error("Pas le bon nombre d'argument", &a);
 	if ((a.e.fd = open(argv[1], O_RDONLY)) == -1)
-		ft_error("Fichier Inexistant");
+		ft_error("Fichier Inexistant", &a);
 	a.e.max_x = 0;
 	a.e.max_y = 0;
 	read_file(&a, argv[1], y, i);

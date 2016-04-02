@@ -53,7 +53,7 @@ void size_z_max_min(t_a *a)
 	size_max_z_to_min_z(a);
 }
 
-void ft_modif_z(t_a *a, char c)
+void ft_modif_z(t_a *a, int keycode)
 {
 	int y;
 	int x;
@@ -64,9 +64,9 @@ void ft_modif_z(t_a *a, char c)
 		x = -1;
 		while (++x < a->e.max_x)
 		{
-			if (c == '+')
+			if (keycode == EGAL)
 				a->map[y][x].z *= 1.1;
-			else if (c == '-')
+			else if (keycode == UNDER)
 				a->map[y][x].z /= 1.1;
 		}
 	}
@@ -105,12 +105,12 @@ t_map					**fonction_creat_struct(t_a *a)
 	int						x;
 
 	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_y)))
-		ft_error("Malloc has Failed for the struct Y");
+		ft_error("Malloc has Failed for the struct Y", a);
 	y = -1;
 	while (++y < a->e.max_y)
 	{
 		if (!(a->map[y] = (t_map *)malloc(sizeof(t_map) * a->e.max_x)))
-			ft_error("Malloc has Failed for the struct X");
+			ft_error("Malloc has Failed for the struct X", a);
 		x = -1;
 		while (++x < a->e.max_x)
 		{
@@ -121,6 +121,48 @@ t_map					**fonction_creat_struct(t_a *a)
 		}
 	}
 	return (a->map);
+}
+
+void iso_modif(t_a *a)
+{
+	int x;
+	int y;
+	double re;
+
+	a->e.iso *= -1;
+	y = -1;
+	re = distance(a);
+	while (++y < a->e.max_y)
+	{
+		x = -1;
+		while (++x < a->e.max_x)
+		{
+			if (a->e.iso < 0)
+				a->map[y][x].x -= re;
+			else
+				a->map[y][x].x += re;
+		}
+	}
+	print(a);
+}
+
+double			distance(t_a *a)
+{
+	int x;
+	double min_x;
+	double max_x;
+	double distance;
+
+	x = -1;
+	while (++x < a->e.max_x)
+	{
+			if (a->map[0][x].x > max_x)
+				max_x = a->map[0][x].x;
+			else if (a->map[0][x].x < min_x)
+				min_x = a->map[0][x].x;
+	}
+	distance = max_x - min_x;
+	return (distance / 2);
 }
 
 void		send_map_to_struct(t_a *a, char *str, int y)
