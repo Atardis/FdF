@@ -17,7 +17,8 @@ FLAGN=-Wall -Wextra -Werror
 SRC = 	main.c \
 		fdf_print.c \
 		fdf_struct.c \
-		fdf_modif.c
+		fdf_modif.c \
+		fdf_color.c
 
 all: $(NAME)
 

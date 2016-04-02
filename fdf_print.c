@@ -68,36 +68,6 @@ void		ft_print_to_image_bresenham(t_a *a)
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
 
-void ft_put_info(t_a *a)
-{
-	char *str;
-
-	str = "Information touche I (on/off)";
-	mlx_string_put(a->e.mlx, a->e.win, 1590, 5, RAZER, str);
-	if (a->e.info > 0)
-	{
-		str = "-----------------------------------";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 25, 0xFFFFFF, str);
-		str = "| Zoom In        = Touche +       |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 40, 0xFFFFFF, str);
-		str = "| Zoom Out       = Touche -       |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 60, 0xFFFFFF, str);
-		str = "| Background     = Touche B       |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 80, 0xFFFFFF, str);
-		str = "| Hauteur Plus   = Touche +/=     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 100, 0xFFFFFF, str);
-		str = "| Hauteur Moins  = Touche -/_     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 120, 0xFFFFFF, str);
-		str = "| Deplacement    = Touche < ^ > v |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 140, 0xFFFFFF, str);
-		str = "| Sortir du FDF  = Touche Esc     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, str);
-		str = "-----------------------------------";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 170, 0xFFFFFF, str);
-	}
-}
-
-
 int			recover_point(t_a *a, int x, int y, char c)
 {
 	int X;
@@ -107,17 +77,17 @@ int			recover_point(t_a *a, int x, int y, char c)
 	Y = 1 + y;
 	if (x < a->e.max_x && X < a->e.max_x && c == 'x' && x >= 0)
 	{
-		a->p1.x = a->map[y][x].x + (a->map[y][x].y / 2);
+		a->p1.x = a->map[y][x].x - ((a->map[y][x].y / 2) * a->e.iso);
 		a->p1.y = a->map[y][x].y - a->map[y][x].z;
-		a->p2.x = a->map[y][X].x + (a->map[y][X].y / 2);
+		a->p2.x = a->map[y][X].x - ((a->map[y][X].y / 2) * a->e.iso);
 		a->p2.y = a->map[y][X].y - a->map[y][X].z;
 		return (1);
 	}
 	if (y < a->e.max_y && Y < a->e.max_y && c == 'y' && y >= 0)
 	{
-		a->p1.x = a->map[y][x].x + (a->map[y][x].y / 2);
+		a->p1.x = a->map[y][x].x - ((a->map[y][x].y / 2) * a->e.iso);
 		a->p1.y = a->map[y][x].y - a->map[y][x].z;
-		a->p2.x = a->map[Y][x].x + (a->map[Y][x].y / 2);
+		a->p2.x = a->map[Y][x].x - ((a->map[Y][x].y / 2) * a->e.iso);
 		a->p2.y = a->map[Y][x].y - a->map[Y][x].z;
 		return (1);
 	}

@@ -24,8 +24,7 @@ int				my_fonct_key(int keycode, t_a *a)
 	if (keycode == B)
 	{
 		a->e.background *= -1;
-		fdf_new_image(a);
-		ft_print_to_image_bresenham(a);
+		print(a);
 	}
 	if (keycode == UNDER || keycode == EGAL)
 	{
@@ -37,10 +36,20 @@ int				my_fonct_key(int keycode, t_a *a)
 	if (keycode == I)
 	{
 		a->e.info *= -1;
-		fdf_new_image(a);
-		ft_print_to_image_bresenham(a);
+		print(a);
+	}
+	if (keycode == T)
+	{
+		a->e.iso *= -1;
+		print(a);
 	}
 	return (0);
+}
+
+void				print(t_a *a)
+{
+	fdf_new_image(a);
+	ft_print_to_image_bresenham(a);
 }
 
 void			ft_put_pixel_to_image(t_a *a, int y, int x, int color)
@@ -49,7 +58,7 @@ void			ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 		*(unsigned int*)(a->e.data + (x * (a->e.bpp)) + (y * a->e.sl)) = color;
 }
 
-void			init(t_a *a)
+void				init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error");
@@ -57,15 +66,15 @@ void			init(t_a *a)
 		ft_error("initialisation mlx_new_windows error");
 	a->e.background = 1;
 	a->e.info = -1;
+	a->e.iso = -1;
 	fdf_new_image(a);
 }
 
-static void		read_file(t_a *a, char *str, int y, int i)
+static void	read_file(t_a *a, char *str, int y, int i)
 {
-	char		*line;
-	int re;
+	char			*line;
 
-	while ((re = get_next_line(a->e.fd, &line)) > 0)
+	while ((a->e.tmp = get_next_line(a->e.fd, &line)) > 0)
 	{
 		if (a->e.max_y == 0)
 			a->e.max_x = count_carac(line);
@@ -75,7 +84,7 @@ static void		read_file(t_a *a, char *str, int y, int i)
 		a->e.max_y++;
 		free(line);
 	}
-	if (re == -1)
+	if (a->e.tmp == -1)
 		ft_error("Probleme de Lecture / Pas bon fichier donné");
 	close(a->e.fd);
 	a->map = fonction_creat_struct(a);
@@ -90,13 +99,12 @@ static void		read_file(t_a *a, char *str, int y, int i)
 	}
 }
 
-int				main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
-	t_a			a;
-	int			y;
-	int			i;
+	t_a				a;
+	int				y;
+	int				i;
 
-	define_struct(&a);
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument");
 	if ((a.e.fd = open(argv[1], O_RDONLY)) == -1)

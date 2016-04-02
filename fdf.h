@@ -32,6 +32,7 @@
 #define EGAL 24
 #define UNDER 27
 #define I 34
+#define T 17
 
 #define BLUE 0x0901F7
 #define BLUE_C 0x015BF7
@@ -43,7 +44,7 @@
 #define YELLOW 0xEFF701
 #define ORANGE 0xF78C01
 #define RED 0xFE4D01
-#define BACKGROUND 0x9A7CC1
+#define BACKGROUND 0x6B4E13
 
 typedef struct		s_fdfstore
 {
@@ -74,6 +75,7 @@ typedef struct		s_environ
 	int 				space;
 	unsigned 		max_y;
 	unsigned 		max_x;
+	int					iso;
 
 	double				size_x;
 	double				size_y;
@@ -86,6 +88,7 @@ typedef struct		s_environ
 	double				distance_z;
 	int						background;
 	int						info;
+	int						tmp;
 }					t_env;
 
 typedef struct 		s_trace
@@ -138,6 +141,7 @@ void ft_background(t_a *a);
 void ft_modif_z(t_a *a, char c);
 
 void ft_put_info(t_a *a);
+void print(t_a *a);
 
 
 
