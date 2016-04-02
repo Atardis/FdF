@@ -73,25 +73,27 @@ void ft_put_info(t_a *a)
 	char *str;
 
 	str = "Information touche I (on/off)";
-	mlx_string_put(a->e.mlx, a->e.win, 1600, 5, 0xFFFFFF, str);
+	mlx_string_put(a->e.mlx, a->e.win, 1590, 5, RAZER, str);
 	if (a->e.info > 0)
 	{
-		str = "-----------------------";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 25, 0xFFFFFF, str);
-		str = "    Zoom In    = Touche +";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 40, 0xFFFFFF, str);
-		str = "    Zoom Out   = Touche -";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 60, 0xFFFFFF, str);
-		str = "   Background  = Touche B";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 80, 0xFFFFFF, str);
-		str = " Hauteur Plus  = Touche +/=";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 100, 0xFFFFFF, str);
-		str = "Hauteur Moins = Touche +/=";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 120, 0xFFFFFF, str);
-		str = "Hauteur Plus = Touche +/=";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 140, 0xFFFFFF, str);
-		str = "Hauteur Plus = Touche +/=";
-		mlx_string_put(a->e.mlx, a->e.win, 1600, 160, 0xFFFFFF, str);
+		str = "-----------------------------------";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 25, 0xFFFFFF, str);
+		str = "| Zoom In        = Touche +       |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 40, 0xFFFFFF, str);
+		str = "| Zoom Out       = Touche -       |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 60, 0xFFFFFF, str);
+		str = "| Background     = Touche B       |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 80, 0xFFFFFF, str);
+		str = "| Hauteur Plus   = Touche +/=     |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 100, 0xFFFFFF, str);
+		str = "| Hauteur Moins  = Touche -/_     |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 120, 0xFFFFFF, str);
+		str = "| Deplacement    = Touche < ^ > v |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 140, 0xFFFFFF, str);
+		str = "| Sortir du FDF  = Touche Esc     |";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, str);
+		str = "-----------------------------------";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 170, 0xFFFFFF, str);
 	}
 }
 
