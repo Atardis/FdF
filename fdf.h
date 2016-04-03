@@ -33,6 +33,8 @@
 #define UNDER 27
 #define I 34
 #define T 17
+#define MAX_X 1920
+#define MAX_Y 1080
 
 #define BLUE 0x0901F7
 #define BLUE_C 0x015BF7
@@ -91,7 +93,7 @@ typedef struct		s_environ
 	int						tmp;
 }					t_env;
 
-typedef struct 		s_trace
+typedef struct 		s_point
 {
 	int				x;
 	int 			y;

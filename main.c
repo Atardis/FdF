@@ -46,7 +46,7 @@ void				print(t_a *a)
 
 void			ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 {
-	if (x >= 0 && x < 1920 && y >= 0 && y < 1080)
+	if (x >= 0 && x < MAX_X && y >= 0 && y < MAX_Y)
 		*(unsigned int*)(a->e.data + (x * (a->e.bpp)) + (y * a->e.sl)) = color;
 }
 
@@ -54,7 +54,7 @@ void				init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error", a);
-	if (!(a->e.win = mlx_new_window(a->e.mlx, 1920, 1080, "FDF")))
+	if (!(a->e.win = mlx_new_window(a->e.mlx, MAX_X, MAX_Y, "FDF")))
 		ft_error("initialisation mlx_new_windows error", a);
 	a->e.background = 1;
 	a->e.info = -1;

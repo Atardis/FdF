@@ -93,17 +93,17 @@ void ft_background(t_a *a)
 	int x;
 
 	y = -1;
-	while (++y < 1080)
+	while (++y < MAX_Y)
 	{
 		x = -1;
-		while (++x < 1920)
+		while (++x < MAX_X)
 			ft_put_pixel_to_image(a, y, x, BACKGROUND);
 	}
 }
 
 void	fdf_new_image(t_a *a)
 {
-	a->e.img = mlx_new_image(a->e.mlx, 1920, 1080);
+	a->e.img = mlx_new_image(a->e.mlx, MAX_X, MAX_Y);
 	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
 	if (a->e.data == NULL)
 		ft_error("probleme get_data", a);
