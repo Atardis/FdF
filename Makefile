@@ -18,7 +18,10 @@ SRC = 	main.c \
 		fdf_print.c \
 		fdf_struct.c \
 		fdf_modif.c \
-		fdf_color.c
+		fdf_color.c \
+		fdf_key.c \
+		fdf_others.c \
+		fdf_image.c 
 
 all: $(NAME)
 

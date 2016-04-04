@@ -26,6 +26,20 @@ void			put_color(t_a *a)
 	}
 }
 
+void			ft_background(t_a *a)
+{
+	int y;
+	int x;
+
+	y = -1;
+	while (++y < MAX_Y)
+	{
+		x = -1;
+		while (++x < MAX_X)
+			ft_put_pixel_to_image(a, y, x, BACKGROUND);
+	}
+}
+
 int				localisation_color(t_a *a, int z)
 {
 	double	r;

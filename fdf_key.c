@@ -12,6 +12,13 @@
 
 #include "fdf.h"
 
+void		ft_error(char *str, t_a *a)
+{
+	ft_putendl(str);
+	mlx_destroy_window(a->e.mlx, a->e.win);
+	exit(1);
+}
+
 int				my_fonct_key(int keycode, t_a *a)
 {
 	ft_putnbr_end(keycode);

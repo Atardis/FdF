@@ -12,45 +12,19 @@
 
 #include "fdf.h"
 
-int				my_fonct_key(int keycode, t_a *a)
-{
-	ft_putnbr_end(keycode);
-	if (keycode == EXIT)
-		ft_error("ESC : Good Bye My Friend", a);
-	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
-		fdf_modif_pos(a, keycode);
-	if (keycode == PLUS || keycode == MINUS)
-		ft_modif_size(a, keycode);
-	if (keycode == B)
-	{
-		a->e.background *= -1;
-		print(a);
-	}
-	if (keycode == UNDER || keycode == EGAL)
-		ft_modif_z(a, keycode);
-	if (keycode == I)
-	{
-		a->e.info *= -1;
-		print(a);
-	}
-	if (keycode == T)
-		iso_modif(a);
-	return (0);
-}
-
-void				print(t_a *a)
+void	print(t_a *a)
 {
 	fdf_new_image(a);
 	ft_print_to_image_bresenham(a);
 }
 
-void			ft_put_pixel_to_image(t_a *a, int y, int x, int color)
+void	ft_put_pixel_to_image(t_a *a, int y, int x, int color)
 {
 	if (x >= 0 && x < MAX_X && y >= 0 && y < MAX_Y)
 		*(unsigned int*)(a->e.data + (x * (a->e.bpp)) + (y * a->e.sl)) = color;
 }
 
-void				init(t_a *a)
+void	init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error", a);
@@ -64,7 +38,7 @@ void				init(t_a *a)
 
 static void	read_file(t_a *a, char *str, int y, int i)
 {
-	char			*line;
+	char	*line;
 
 	while ((a->e.tmp = get_next_line(a->e.fd, &line)) > 0)
 	{
@@ -91,11 +65,11 @@ static void	read_file(t_a *a, char *str, int y, int i)
 	}
 }
 
-int					main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	t_a				a;
-	int				y;
-	int				i;
+	t_a		a;
+	int		y;
+	int		i;
 
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument", &a);

@@ -12,56 +12,17 @@
 
 #include "fdf.h"
 
-void		ft_error(char *str, t_a *a)
-{
-	ft_putendl(str);
-	mlx_destroy_window(a->e.mlx, a->e.win);
-	exit(1);
-}
-
-void move_map(t_a *a)
-{
-	int y;
-	int x;
-
-	y = -1;
-	while (++y < a->e.max_y)
-	{
-		x = -1;
-		while (++x < a->e.max_x)
-		{
-			a->map[y][x].x -= (a->e.move_x);
-			a->map[y][x].y -= (a->e.move_y);
-		}
-	}
-}
-
 void		ft_print_to_image_bresenham(t_a *a)
 {
-	int y;
-	int x;
+	int		y;
+	int		x;
 
 	y = -1;
 	while (++y < a->e.max_y)
 	{
 		x = -1;
 		while (++x < a->e.max_x)
-		{
-			if ((recover_point(a, x, y, 'x')) > 0)
-			{
-				if (a->map[y][x].z < a->map[y][x + 1].z)
-					ligne(a , a->map[y][x + 1].color);
-				else if (a->map[y][x].z > a->map[y][x + 1].z || a->map[y][x].z == a->map[y][x + 1].z)
-					ligne(a , a->map[y][x].color);
-			}
-			if ((recover_point(a, x, y, 'y')) > 0)
-			{
-				if (a->map[y][x].z < a->map[y + 1][x].z)
-					ligne(a , a->map[y + 1][x].color);
-				else if (a->map[y][x].z > a->map[y + 1][x].z || a->map[y][x].z == a->map[y + 1][x].z)
-					ligne(a , a->map[y][x].color);
-			}
-		}
+			ft_print_to_image_bresenham_while(a, x, y);
 	}
 	fdf_recover_size(a);
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
@@ -69,80 +30,73 @@ void		ft_print_to_image_bresenham(t_a *a)
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
 
-int			recover_point(t_a *a, int x, int y, char c)
+void		ft_print_to_image_bresenham_while(t_a *a, int x, int y)
 {
-	int X;
-	int Y;
-
-	X = 1 + x;
-	Y = 1 + y;
-	if (x < a->e.max_x && X < a->e.max_x && c == 'x' && x >= 0)
+	if ((recover_point(a, x, y, 'x')) > 0)
 	{
-		a->p1.x = a->map[y][x].x - ((a->map[y][x].y / 2) * a->e.iso);
-		a->p1.y = a->map[y][x].y - a->map[y][x].z;
-		a->p2.x = a->map[y][X].x - ((a->map[y][X].y / 2) * a->e.iso);
-		a->p2.y = a->map[y][X].y - a->map[y][X].z;
-		return (1);
+		if (a->map[y][x].z < a->map[y][x + 1].z)
+			ligne(a, a->map[y][x + 1].color);
+		else if (a->map[y][x].z > a->map[y][x + 1].z ||
+			a->map[y][x].z == a->map[y][x + 1].z)
+			ligne(a, a->map[y][x].color);
 	}
-	if (y < a->e.max_y && Y < a->e.max_y && c == 'y' && y >= 0)
+	if ((recover_point(a, x, y, 'y')) > 0)
 	{
-		a->p1.x = a->map[y][x].x - ((a->map[y][x].y / 2) * a->e.iso);
-		a->p1.y = a->map[y][x].y - a->map[y][x].z;
-		a->p2.x = a->map[Y][x].x - ((a->map[Y][x].y / 2) * a->e.iso);
-		a->p2.y = a->map[Y][x].y - a->map[Y][x].z;
-		return (1);
+		if (a->map[y][x].z < a->map[y + 1][x].z)
+			ligne(a, a->map[y + 1][x].color);
+		else if (a->map[y][x].z > a->map[y + 1][x].z ||
+			a->map[y][x].z == a->map[y + 1][x].z)
+			ligne(a, a->map[y][x].color);
 	}
-	return (0);
 }
 
-void ligne(t_a *a, int	color)
+void		ligne(t_a *a, int color)
 {
-	int dx;
-	int	dy;
-	int	i;
-	int	xinc;
-	int	yinc;
-	int	cumul;
-	int	x;
-	int	y;
-
-	x = a->p1.x ;
-	y = a->p1.y ;
-	dx = a->p2.x - a->p1.x;
-	dy = a->p2.y - a->p1.y;
-	xinc = (dx > 0) ? 1 : -1;
-	yinc = (dy > 0) ? 1 : -1;
-	dx = abs(dx);
-	dy = abs(dy);
-	ft_put_pixel_to_image(a, y, x, color);
-	if ( dx > dy )
-	{
-		cumul = dx / 2;
-		for (i = 1 ; i <= dx ; i++)
-		{
-			x += xinc ;
-			cumul += dy ;
-			if ( cumul >= dx )
-			{
-				cumul -= dx ;
-				y += yinc ;
-			}
-			ft_put_pixel_to_image(a, y, x, color);
-		}
-	}
+	a->b.x = a->p1.x;
+	a->b.y = a->p1.y;
+	a->b.dx = a->p2.x - a->p1.x;
+	a->b.dy = a->p2.y - a->p1.y;
+	a->b.xinc = (a->b.dx > 0) ? 1 : -1;
+	a->b.yinc = (a->b.dy > 0) ? 1 : -1;
+	a->b.dx = abs(a->b.dx);
+	a->b.dy = abs(a->b.dy);
+	ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
+	if (a->b.dx > a->b.dy)
+		ligne_if(a, color);
 	else
+		ligne_else(a, color);
+}
+
+void		ligne_if(t_a *a, int color)
+{
+	a->b.cumul = a->b.dx / 2;
+	a->b.i = 0;
+	while (++a->b.i <= a->b.dx)
 	{
-		cumul = dy / 2 ;
-		for (i = 1 ; i <= dy ; i++)
+		a->b.x += a->b.xinc;
+		a->b.cumul += a->b.dy;
+		if (a->b.cumul >= a->b.dx)
 		{
-			y += yinc ;
-			cumul += dx ;
-			if (cumul >= dy)
-			{
-				cumul -= dy ;
-				x += xinc;
-			}
-      		ft_put_pixel_to_image(a, y, x, color);
-	  	}
+			a->b.cumul -= a->b.dx;
+			a->b.y += a->b.yinc;
+		}
+		ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
+	}
+}
+
+void		ligne_else(t_a *a, int color)
+{
+	a->b.cumul = a->b.dy / 2;
+	a->b.i = 0;
+	while (++a->b.i <= a->b.dy)
+	{
+		a->b.y += a->b.yinc;
+		a->b.cumul += a->b.dx;
+		if (a->b.cumul >= a->b.dy)
+		{
+			a->b.cumul -= a->b.dy;
+			a->b.x += a->b.xinc;
+		}
+		ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
 	}
 }

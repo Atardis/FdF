@@ -12,19 +12,19 @@
 
 #include "fdf.h"
 
-void fdf_recover_size_o(t_a *a)
+void	fdf_recover_size_o(t_a *a)
 {
 	a->e.size_x = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
 	a->e.size_y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
-void fdf_recover_size(t_a *a)
+void	fdf_recover_size(t_a *a)
 {
 	a->e.size_X = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
 	a->e.size_Y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
-void fdf_move(t_a *a)
+void	fdf_move(t_a *a)
 {
 	a->e.move_x = ((a->e.size_X - a->e.size_x) / 2);
 	a->e.move_y = ((a->e.size_Y - a->e.size_y) / 2);
@@ -81,33 +81,5 @@ void	ft_modif_size(t_a *a, int keycode)
 	}
 	fdf_recover_size(a);
 	fdf_move(a);
-	move_map(a);
-	mlx_clear_window(a->e.mlx, a->e.win);
-	fdf_new_image(a);
-	ft_print_to_image_bresenham(a);
-}
-
-void ft_background(t_a *a)
-{
-	int y;
-	int x;
-
-	y = -1;
-	while (++y < MAX_Y)
-	{
-		x = -1;
-		while (++x < MAX_X)
-			ft_put_pixel_to_image(a, y, x, BACKGROUND);
-	}
-}
-
-void	fdf_new_image(t_a *a)
-{
-	a->e.img = mlx_new_image(a->e.mlx, MAX_X, MAX_Y);
-	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
-	if (a->e.data == NULL)
-		ft_error("probleme get_data", a);
-	a->e.bpp /= 8;
-	if (a->e.background < 0)
-		ft_background(a);
+	print(a);
 }
