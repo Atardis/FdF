@@ -22,7 +22,7 @@ void		ft_print_to_image_bresenham(t_a *a)
 	{
 		x = -1;
 		while (++x < a->e.max_x)
-			ft_print_to_image_bresenham_while(a, x, y);
+			ft_print_to_image_b_while(a, x, y);
 	}
 	fdf_recover_size(a);
 	mlx_put_image_to_window(a->e.mlx, a->e.win, a->e.img, 0, 0);
@@ -30,7 +30,7 @@ void		ft_print_to_image_bresenham(t_a *a)
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
 
-void		ft_print_to_image_bresenham_while(t_a *a, int x, int y)
+void		ft_print_to_image_b_while(t_a *a, int x, int y)
 {
 	if ((recover_point(a, x, y, 'x')) > 0)
 	{
@@ -60,7 +60,7 @@ void		ligne(t_a *a, int color)
 	a->b.yinc = (a->b.dy > 0) ? 1 : -1;
 	a->b.dx = abs(a->b.dx);
 	a->b.dy = abs(a->b.dy);
-	ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
+	ft_p_pixel_image(a, a->b.y, a->b.x, color);
 	if (a->b.dx > a->b.dy)
 		ligne_if(a, color);
 	else
@@ -80,7 +80,7 @@ void		ligne_if(t_a *a, int color)
 			a->b.cumul -= a->b.dx;
 			a->b.y += a->b.yinc;
 		}
-		ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
+		ft_p_pixel_image(a, a->b.y, a->b.x, color);
 	}
 }
 
@@ -97,6 +97,6 @@ void		ligne_else(t_a *a, int color)
 			a->b.cumul -= a->b.dy;
 			a->b.x += a->b.xinc;
 		}
-		ft_put_pixel_to_image(a, a->b.y, a->b.x, color);
+		ft_p_pixel_image(a, a->b.y, a->b.x, color);
 	}
 }

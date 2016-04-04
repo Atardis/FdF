@@ -20,14 +20,14 @@ void	fdf_recover_size_o(t_a *a)
 
 void	fdf_recover_size(t_a *a)
 {
-	a->e.size_X = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
-	a->e.size_Y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
+	a->e.size_xx = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
+	a->e.size_yy = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
 void	fdf_move(t_a *a)
 {
-	a->e.move_x = ((a->e.size_X - a->e.size_x) / 2);
-	a->e.move_y = ((a->e.size_Y - a->e.size_y) / 2);
+	a->e.move_x = ((a->e.size_xx - a->e.size_x) / 2);
+	a->e.move_y = ((a->e.size_yy - a->e.size_y) / 2);
 }
 
 void	fdf_modif_pos(t_a *a, int keycode)
@@ -42,13 +42,13 @@ void	fdf_modif_pos(t_a *a, int keycode)
 		while (++x < a->e.max_x)
 		{
 			if (keycode == LEFT)
-				a->map[y][x].x -= 15;
+				a->map[y][x].x -= 20;
 			else if (keycode == RIGHT)
-				a->map[y][x].x += 15;
+				a->map[y][x].x += 20;
 			else if (keycode == UP)
-				a->map[y][x].y -= 15;
+				a->map[y][x].y -= 20;
 			else if (keycode == DOWN)
-				a->map[y][x].y += 15;
+				a->map[y][x].y += 20;
 		}
 	}
 	fdf_new_image(a);

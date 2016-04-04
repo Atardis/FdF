@@ -12,19 +12,19 @@
 
 #include "fdf.h"
 
-void	print(t_a *a)
+void					print(t_a *a)
 {
 	fdf_new_image(a);
 	ft_print_to_image_bresenham(a);
 }
 
-void	ft_put_pixel_to_image(t_a *a, int y, int x, int color)
+void					ft_p_pixel_image(t_a *a, int y, int x, int color)
 {
 	if (x >= 0 && x < MAX_X && y >= 0 && y < MAX_Y)
 		*(unsigned int*)(a->e.data + (x * (a->e.bpp)) + (y * a->e.sl)) = color;
 }
 
-void	init(t_a *a)
+void					init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error", a);
@@ -36,16 +36,16 @@ void	init(t_a *a)
 	fdf_new_image(a);
 }
 
-static void	read_file(t_a *a, char *str, int y, int i)
+static void		read_file(t_a *a, char *str, int y, int i)
 {
-	char	*line;
+	char				*line;
 
 	while ((a->e.tmp = get_next_line(a->e.fd, &line)) > 0)
 	{
 		if (a->e.max_y == 0)
 			a->e.max_x = count_carac(line);
 		if (a->e.max_y != 0)
-			if (a->e.max_x != count_carac(line))
+			if (a->e.max_x != (int)count_carac(line))
 				ft_error("Fichier Invalide", a);
 		a->e.max_y++;
 		free(line);
@@ -65,11 +65,11 @@ static void	read_file(t_a *a, char *str, int y, int i)
 	}
 }
 
-int			main(int argc, char **argv)
+int						main(int argc, char **argv)
 {
-	t_a		a;
-	int		y;
-	int		i;
+	t_a					a;
+	int					y;
+	int					i;
 
 	if (argc < 2)
 		ft_error("Pas le bon nombre d'argument", &a);
@@ -77,6 +77,8 @@ int			main(int argc, char **argv)
 		ft_error("Fichier Inexistant", &a);
 	a.e.max_x = 0;
 	a.e.max_y = 0;
+	i = 0;
+	y = 0;
 	read_file(&a, argv[1], y, i);
 	size_z_max_min(&a);
 	init(&a);

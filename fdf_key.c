@@ -19,9 +19,8 @@ void		ft_error(char *str, t_a *a)
 	exit(1);
 }
 
-int				my_fonct_key(int keycode, t_a *a)
+int			my_fonct_key(int keycode, t_a *a)
 {
-	ft_putnbr_end(keycode);
 	if (keycode == EXIT)
 		ft_error("ESC : Good Bye My Friend", a);
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
@@ -39,19 +38,19 @@ int				my_fonct_key(int keycode, t_a *a)
 	return (0);
 }
 
-void			background_print(t_a *a)
+void		background_print(t_a *a)
 {
 	a->e.background *= -1;
 	print(a);
 }
 
-void			iso_print(t_a *a)
+void		iso_print(t_a *a)
 {
 	a->e.iso *= -1;
 	print(a);
 }
 
-void			info_print(t_a *a)
+void		info_print(t_a *a)
 {
 	a->e.info *= -1;
 	print(a);

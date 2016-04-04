@@ -12,10 +12,31 @@
 
 #include "fdf.h"
 
+unsigned int		count_carac(char *line)
+{
+	unsigned int	index;
+	unsigned int	count;
+
+	index = 0;
+	count = 0;
+	while (line[index])
+	{
+		if (line[index] == '-' || (line[index] >= '0' && line[index] <= '9'))
+		{
+			count++;
+			while (line[index] && line[index] != ' ')
+				index++;
+		}
+		else
+			index++;
+	}
+	return (count);
+}
+
 t_map						**fonction_creat_struct(t_a *a)
 {
-	unsigned int	y;
-	unsigned int	x;
+	int						y;
+	int						x;
 
 	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_y)))
 		ft_error("Malloc has Failed for the struct Y", a);

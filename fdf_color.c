@@ -36,7 +36,7 @@ void			ft_background(t_a *a)
 	{
 		x = -1;
 		while (++x < MAX_X)
-			ft_put_pixel_to_image(a, y, x, BACKGROUND);
+			ft_p_pixel_image(a, y, x, BACKGROUND);
 	}
 }
 
