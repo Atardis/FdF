@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-void			put_color(t_a *a)
+void		put_color(t_a *a)
 {
-	int			y;
-	int			x;
+	int		y;
+	int		x;
 
 	y = -1;
 	while (++y < a->e.max_y)
@@ -26,10 +26,10 @@ void			put_color(t_a *a)
 	}
 }
 
-void			ft_background(t_a *a)
+void		ft_background(t_a *a)
 {
-	int y;
-	int x;
+	int		y;
+	int		x;
 
 	y = -1;
 	while (++y < MAX_Y)
@@ -40,7 +40,7 @@ void			ft_background(t_a *a)
 	}
 }
 
-int				localisation_color(t_a *a, int z)
+int			localisation_color(t_a *a, int z)
 {
 	double	r;
 
@@ -68,7 +68,7 @@ int				localisation_color(t_a *a, int z)
 	return (0xFFFFFF);
 }
 
-void			ft_put_info(t_a *a)
+void		ft_put_info(t_a *a)
 {
 	a->e.str = "Information touche I (on/off)";
 	mlx_string_put(a->e.mlx, a->e.win, 1590, 5, RAZER, a->e.str);

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void					fdf_new_image(t_a *a)
+void		fdf_new_image(t_a *a)
 {
 	a->e.img = mlx_new_image(a->e.mlx, MAX_X, MAX_Y);
 	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
@@ -23,13 +23,13 @@ void					fdf_new_image(t_a *a)
 		ft_background(a);
 }
 
-void					ft_p_pixel_image(t_a *a, int y, int x, int color)
+void		ft_p_pixel_image(t_a *a, int y, int x, int color)
 {
 	if (x >= 0 && x < MAX_X && y >= 0 && y < MAX_Y)
 		*(unsigned int*)(a->e.data + (x * (a->e.bpp)) + (y * a->e.sl)) = color;
 }
 
-void					init(t_a *a)
+void		init(t_a *a)
 {
 	if (!(a->e.mlx = mlx_init()))
 		ft_error("initialisation mlx_init error", a);
