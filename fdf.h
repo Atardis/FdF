@@ -35,7 +35,6 @@
 # define T 17
 # define MAX_X 1920
 # define MAX_Y 1080
-
 # define BLUE 0x0901F7
 # define BLUE_C 0x015BF7
 # define SKY 0x01B5F7
@@ -48,22 +47,31 @@
 # define RED 0xFE4D01
 # define BACKGROUND 0x4C1B1B
 
-typedef struct	s_fdf_map
+typedef struct				s_fdf_map
 {
-	double				x;
-	double				y;
-	double				z;
-	double				zo;
+	double					x;
+	double					y;
+	double					z;
+	double					zo;
 	int						color;
-}				t_map;
+}							t_map;
 
-typedef struct	s_environ
+typedef struct				s_environ
 {
 	void					*mlx;
 	void					*win;
 	void					*img;
 	char					*data;
 	char					*str;
+	double					size_x;
+	double					size_y;
+	double					size_xx;
+	double					size_yy;
+	double					move_x;
+	double					move_y;
+	double					z_max;
+	double					z_min;
+	double					distance_z;
 	int						fd;
 	int						width;
 	int						height;
@@ -77,21 +85,12 @@ typedef struct	s_environ
 	int						max_y;
 	int						max_x;
 	int						iso;
-	double				size_x;
-	double				size_y;
-	double				size_xx;
-	double				size_yy;
-	double				move_x;
-	double				move_y;
-	double				z_max;
-	double				z_min;
-	double				distance_z;
 	int						background;
 	int						info;
 	int						tmp;
-}				t_env;
+}							t_env;
 
-typedef struct	s_bresenham
+typedef struct				s_bresenham
 {
 	int						dx;
 	int						dy;
@@ -101,30 +100,29 @@ typedef struct	s_bresenham
 	int						cumul;
 	int						x;
 	int						y;
-}				t_b;
+}							t_b;
 
-typedef struct	s_point
+typedef struct				s_point
 {
 	int						x;
 	int						y;
 	int						c;
-}				t_p;
+}							t_p;
 
-typedef struct	s_all
+typedef struct				s_all
 {
 	t_map					**map;
 	t_env					e;
 	t_p						p1;
 	t_p						p2;
 	t_b						b;
-}				t_a;
+}							t_a;
 
 void						define_struct(t_a *a);
 void						ft_error(char *str, t_a *a);
 void						ft_p_pixel_image(t_a *a, int y, int x, int color);
 void						init_mxl(t_a *a);
 void						send_map_to_struct(t_a *a, char *str, int y);
-int							my_fonct_key(int keycode, t_a *a);
 void						ft_modif_up(t_a *a);
 void						ft_modif_down(t_a *a);
 void						ft_modif_left(t_a *a);
@@ -137,7 +135,6 @@ void						ft_modif_size(t_a *a, int keycode);
 void						fdf_new_image(t_a *a);
 void						ft_print_to_image_bresenham(t_a *a);
 void						ft_print_to_image_b_while(t_a *a, int x, int y);
-int							recover_point(t_a *a, int x, int y, char c);
 void						ligne(t_a *a, int	color);
 void						ligne_else(t_a *a, int color);
 void						ligne_if(t_a *a, int color);
@@ -145,7 +142,6 @@ void						fdf_recover_size(t_a *a);
 void						fdf_recover_size_o(t_a *a);
 void						size_z_max_min(t_a *a);
 void						size_max_z_to_min_z(t_a *a);
-int							localisation_color(t_a *a, int z);
 void						put_color(t_a *a);
 void						ft_background(t_a *a);
 void						ft_modif_z(t_a *a, int keycode);
@@ -154,8 +150,13 @@ void						print(t_a *a);
 void						iso_print(t_a *a);
 void						info_print(t_a *a);
 void						background_print(t_a *a);
+
 int							my_fonct_key(int keycode, t_a *a);
-unsigned int		count_carac(char *line);
+int							recover_point(t_a *a, int x, int y, char c);
+int							localisation_color(t_a *a, int z);
+int							my_fonct_key(int keycode, t_a *a);
+
+unsigned int				count_carac(char *line);
 t_map						**fonction_creat_struct(t_a *a);
 
 #endif

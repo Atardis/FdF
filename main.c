@@ -36,7 +36,7 @@ void					init(t_a *a)
 	fdf_new_image(a);
 }
 
-static void		read_file(t_a *a, char *str, int y, int i)
+static void				read_file(t_a *a, char *str, int y, int i)
 {
 	char				*line;
 

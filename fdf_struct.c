@@ -33,10 +33,10 @@ unsigned int		count_carac(char *line)
 	return (count);
 }
 
-t_map						**fonction_creat_struct(t_a *a)
+t_map				**fonction_creat_struct(t_a *a)
 {
-	int						y;
-	int						x;
+	int				y;
+	int				x;
 
 	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_y)))
 		ft_error("Malloc has Failed for the struct Y", a);
@@ -57,11 +57,11 @@ t_map						**fonction_creat_struct(t_a *a)
 	return (a->map);
 }
 
-void						send_map_to_struct(t_a *a, char *str, int y)
+void				send_map_to_struct(t_a *a, char *str, int y)
 {
-	int						i;
-	int						x;
-	int						find;
+	int				i;
+	int				x;
+	int				find;
 
 	i = 0;
 	find = 0;
