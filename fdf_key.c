@@ -14,8 +14,12 @@
 
 void		ft_error(char *str, t_a *a)
 {
+	a->e.tmp = 0;
 	ft_putendl(str);
+	mlx_clear_window(a->e.mlx, a->e.win);
 	mlx_destroy_window(a->e.mlx, a->e.win);
+	free(a->e.mlx);
+	free(a->map);
 	exit(1);
 }
 

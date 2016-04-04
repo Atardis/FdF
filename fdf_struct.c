@@ -57,6 +57,23 @@ t_map				**fonction_creat_struct(t_a *a)
 	return (a->map);
 }
 
+static void			verif_caract(t_a *a, char *str)
+{
+	int				i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '-' && str[i + 1] == '-')
+			ft_error("Probleme de Caractere dans la map (-)", a);
+		if (str[i] == '+' && str[i + 1] == '+')
+			ft_error("Probleme de Caractere dans la map (+)", a);
+		if (str[i] != '-' && str[i] != ' ' && !(str[i] >= '0' && str[i] <= '9') && 
+			!(str[i] >= 'A' && str[i] <= 'F') && str[i] != ',' && str[i] != 'x' && str[i] != '+')
+			ft_error("Caractere Inconnu", a);
+	}
+}
+
 void				send_map_to_struct(t_a *a, char *str, int y)
 {
 	int				i;
@@ -66,6 +83,7 @@ void				send_map_to_struct(t_a *a, char *str, int y)
 	i = 0;
 	find = 0;
 	x = 0;
+	verif_caract(a, str);
 	while (str[i] && y < a->e.max_y)
 	{
 		while (str[i] && str[i] != '-' && (str[i] < '0' || str[i] > '9'))

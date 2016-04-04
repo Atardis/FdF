@@ -25,7 +25,7 @@ SRC = 	main.c \
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	@make -C libft
 	@echo "\033[33;32m|\033[31m Compilation de la libft\t\t\033[33;32m | OK |"
 	@gcc -o $(NAME) $(SRC) $(FLAG) $(FLAGN) libft/libft.a
@@ -45,9 +45,6 @@ fclean: clean
 
 line:
 	@echo "\033[33;31m-----------------------------------------------"
-
-%.o: %.c
-	@gcc $(FLAG) $(FLAGN)-o $@ -c $^
 
 re: fclean line all
 

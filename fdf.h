@@ -150,6 +150,7 @@ void						print(t_a *a);
 void						iso_print(t_a *a);
 void						info_print(t_a *a);
 void						background_print(t_a *a);
+void						init(t_a *a);
 
 int							my_fonct_key(int keycode, t_a *a);
 int							recover_point(t_a *a, int x, int y, char c);
