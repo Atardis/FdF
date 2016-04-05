@@ -28,7 +28,7 @@ all: $(NAME)
 $(NAME): $(SRC)
 	@make -C libft
 	@echo "\033[33;32m|\033[31m Compilation de la libft\t\t\033[33;32m | OK |"
-	@gcc -o $(NAME) $(SRC) $(FLAG) $(FLAGN) libft/libft.a
+	@gcc -o $(NAME) $(SRC) libft/libft.a
 	@echo "\033[33;32m|\033[31m Compilation du programme Fdf\t\t\033[33;32m | OK |"
 	@echo "\033[33;31m-----------------------------------------------"
 	@echo "\033[33;32m|\033[33;32m The \033[31mfdf \033[33;32mfile is create\t\t\033[33;32m | OK |"
