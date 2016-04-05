@@ -72,9 +72,9 @@ int						main(int argc, char **argv)
 	y = 0;
 	read_file(&a, argv[1], y, i);
 	while(1);
-	// size_z_max_min(&a);
-	// ft_print_to_image_bresenham(&a);
-	// mlx_hook(a.e.win, 2, (1L << 01), my_fonct_key, &a);
-	// mlx_loop(a.e.mlx);
+	size_z_max_min(&a);
+	ft_print_to_image_bresenham(&a);
+	mlx_hook(a.e.win, 2, (1L << 01), my_fonct_key, &a);
+	mlx_loop(a.e.mlx);
 	return (0);
 }
