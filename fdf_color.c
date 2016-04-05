@@ -90,9 +90,11 @@ void		ft_put_info(t_a *a)
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 140, 0xFFFFFF, a->e.str);
 		a->e.str = "| Changer l'ISO  = Touche T       |";
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, a->e.str);
-		a->e.str = "| Sortir du FDF  = Touche Esc     |";
+		a->e.str = "| Intervertir Z  = Touche T       |";
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 180, 0xFFFFFF, a->e.str);
-		a->e.str = "-----------------------------------";
+		a->e.str = "| Sortir du FDF  = Touche Esc     |";
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 200, 0xFFFFFF, a->e.str);
+		a->e.str = "-----------------------------------";
+		mlx_string_put(a->e.mlx, a->e.win, 1565, 220, 0xFFFFFF, a->e.str);
 	}
 }

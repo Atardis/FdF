@@ -12,17 +12,6 @@
 
 #include "fdf.h"
 
-void		ft_error(char *str, t_a *a)
-{
-	a->e.tmp = 0;
-	ft_putendl(str);
-	mlx_clear_window(a->e.mlx, a->e.win);
-	mlx_destroy_window(a->e.mlx, a->e.win);
-	free(a->e.mlx);
-	free(a->map);
-	exit(1);
-}
-
 int			my_fonct_key(int keycode, t_a *a)
 {
 	if (keycode == EXIT)
@@ -39,7 +28,24 @@ int			my_fonct_key(int keycode, t_a *a)
 		info_print(a);
 	if (keycode == T)
 		iso_print(a);
+	if (keycode == R)
+		reverse_z(a);
 	return (0);
+}
+
+void		reverse_z(t_a *a)
+{
+	int		y;
+	int		x;
+
+	y = -1;
+	while (++y < a->e.max_y)
+	{
+		x = -1;
+		while (++x < a->e.max_x)
+			a->map[y][x].z *= -1;
+	}
+	print(a);
 }
 
 void		background_print(t_a *a)

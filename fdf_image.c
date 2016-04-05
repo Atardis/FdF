@@ -12,6 +12,17 @@
 
 #include "fdf.h"
 
+void		ft_error(char *str, t_a *a)
+{
+	a->e.tmp = 0;
+	ft_putendl(str);
+	mlx_clear_window(a->e.mlx, a->e.win);
+	mlx_destroy_window(a->e.mlx, a->e.win);
+	free(a->e.mlx);
+	free(a->map);
+	exit(1);
+}
+
 void		fdf_new_image(t_a *a)
 {
 	a->e.img = mlx_new_image(a->e.mlx, MAX_X, MAX_Y);

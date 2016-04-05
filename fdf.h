@@ -33,6 +33,7 @@
 # define UNDER 27
 # define I 34
 # define T 17
+# define R 15
 # define MAX_X 1920
 # define MAX_Y 1080
 
@@ -152,6 +153,7 @@ void						iso_print(t_a *a);
 void						info_print(t_a *a);
 void						background_print(t_a *a);
 void						init(t_a *a);
+void						reverse_z(t_a *a);
 
 int							my_fonct_key(int keycode, t_a *a);
 int							recover_point(t_a *a, int x, int y, char c);
