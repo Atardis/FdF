@@ -35,6 +35,7 @@
 # define T 17
 # define MAX_X 1920
 # define MAX_Y 1080
+
 # define BLUE 0x0901F7
 # define BLUE_C 0x015BF7
 # define SKY 0x01B5F7
