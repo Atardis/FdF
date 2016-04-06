@@ -79,10 +79,14 @@ static void		ft_put_info_2(t_a *a)
 	mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, a->e.str);
 	a->e.str = "| Intervertir Z  = Touche R       |";
 	mlx_string_put(a->e.mlx, a->e.win, 1565, 180, 0xFFFFFF, a->e.str);
-	a->e.str = "| Sortir du FDF  = Touche Esc     |";
+	a->e.str = "| Origine All    = Touche O       |";
 	mlx_string_put(a->e.mlx, a->e.win, 1565, 200, 0xFFFFFF, a->e.str);
-	a->e.str = "-----------------------------------";
+	a->e.str = "| Origine Z      = Touche Z       |";
 	mlx_string_put(a->e.mlx, a->e.win, 1565, 220, 0xFFFFFF, a->e.str);
+	a->e.str = "| Sortir du FDF  = Touche Esc     |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 240, 0xFFFFFF, a->e.str);
+	a->e.str = "-----------------------------------";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 250, 0xFFFFFF, a->e.str);
 }
 
 void			ft_put_info(t_a *a)

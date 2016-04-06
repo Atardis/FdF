@@ -95,6 +95,7 @@ void				send_map_to_struct(t_a *a, char *str, int y)
 		{
 			find = 1;
 			a->map[y][x].z = ft_atoi_re(str, i);
+			a->map[y][x].zo = a->map[y][x].z;
 			x++;
 		}
 		while (str[i] && (str[i] == '-' || (str[i] >= '0' && str[i] <= '9') ||

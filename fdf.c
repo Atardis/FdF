@@ -66,6 +66,7 @@ int						main(int argc, char **argv)
 	a.e.max_x = 0;
 	a.e.max_y = 0;
 	a.e.verif = 0;
+	a.e.touch_z = 1;
 	a.e.name = argv[1];
 	if (argc < 2)
 		ft_error("Not Many Of Argument", &a);
@@ -80,4 +81,22 @@ int						main(int argc, char **argv)
 	mlx_hook(a.e.win, 2, (1L << 01), my_fonct_key, &a);
 	mlx_loop(a.e.mlx);
 	return (0);
+}
+
+void					ft_print_image_x(t_a *a, int x, int y)
+{
+	if (a->map[y][x].z < a->map[y][x + 1].z)
+	{
+		if (a->e.touch_z > 0)
+			ligne(a, a->map[y][x + 1].color);
+		else
+			ligne(a, a->map[y][x].color);
+	}
+	else
+	{
+		if (a->e.touch_z > 0)
+			ligne(a, a->map[y][x].color);
+		else
+			ligne(a, a->map[y][x + 1].color);
+	}
 }

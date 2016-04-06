@@ -12,7 +12,30 @@
 
 #include "fdf.h"
 
-void		ft_print_to_image_bresenham(t_a *a)
+static void		ft_print_to_image_b_while(t_a *a, int x, int y)
+{
+	if ((recover_point(a, x, y, 'x')) > 0)
+		ft_print_image_x(a, x, y);
+	if ((recover_point(a, x, y, 'y')) > 0)
+	{
+		if (a->map[y][x].z < a->map[y + 1][x].z)
+		{
+			if (a->e.touch_z > 0)
+				ligne(a, a->map[y + 1][x].color);
+			else
+				ligne(a, a->map[y][x].color);
+		}
+		else
+		{
+			if (a->e.touch_z > 0)
+				ligne(a, a->map[y][x].color);
+			else
+				ligne(a, a->map[y + 1][x].color);
+		}
+	}
+}
+
+void			ft_print_to_image_bresenham(t_a *a)
 {
 	int		y;
 	int		x;
@@ -30,42 +53,7 @@ void		ft_print_to_image_bresenham(t_a *a)
 	mlx_destroy_image(a->e.mlx, a->e.img);
 }
 
-void		ft_print_to_image_b_while(t_a *a, int x, int y)
-{
-	if ((recover_point(a, x, y, 'x')) > 0)
-	{
-		if (a->map[y][x].z < a->map[y][x + 1].z)
-			ligne(a, a->map[y][x + 1].color);
-		else
-			ligne(a, a->map[y][x].color);
-	}
-	if ((recover_point(a, x, y, 'y')) > 0)
-	{
-		if (a->map[y][x].z < a->map[y + 1][x].z)
-			ligne(a, a->map[y + 1][x].color);
-		else
-			ligne(a, a->map[y][x].color);
-	}
-}
-
-void		ligne(t_a *a, int color)
-{
-	a->b.x = a->p1.x;
-	a->b.y = a->p1.y;
-	a->b.dx = a->p2.x - a->p1.x;
-	a->b.dy = a->p2.y - a->p1.y;
-	a->b.xinc = (a->b.dx > 0) ? 1 : -1;
-	a->b.yinc = (a->b.dy > 0) ? 1 : -1;
-	a->b.dx = abs(a->b.dx);
-	a->b.dy = abs(a->b.dy);
-	ft_p_pixel_image(a, a->b.y, a->b.x, color);
-	if (a->b.dx > a->b.dy)
-		ligne_if(a, color);
-	else
-		ligne_else(a, color);
-}
-
-void		ligne_if(t_a *a, int color)
+static void		ligne_if(t_a *a, int color)
 {
 	a->b.cumul = a->b.dx / 2;
 	a->b.i = 0;
@@ -82,7 +70,7 @@ void		ligne_if(t_a *a, int color)
 	}
 }
 
-void		ligne_else(t_a *a, int color)
+static void		ligne_else(t_a *a, int color)
 {
 	a->b.cumul = a->b.dy / 2;
 	a->b.i = 0;
@@ -97,4 +85,21 @@ void		ligne_else(t_a *a, int color)
 		}
 		ft_p_pixel_image(a, a->b.y, a->b.x, color);
 	}
+}
+
+void			ligne(t_a *a, int color)
+{
+	a->b.x = a->p1.x;
+	a->b.y = a->p1.y;
+	a->b.dx = a->p2.x - a->p1.x;
+	a->b.dy = a->p2.y - a->p1.y;
+	a->b.xinc = (a->b.dx > 0) ? 1 : -1;
+	a->b.yinc = (a->b.dy > 0) ? 1 : -1;
+	a->b.dx = abs(a->b.dx);
+	a->b.dy = abs(a->b.dy);
+	ft_p_pixel_image(a, a->b.y, a->b.x, color);
+	if (a->b.dx > a->b.dy)
+		ligne_if(a, color);
+	else
+		ligne_else(a, color);
 }

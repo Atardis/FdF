@@ -12,6 +12,15 @@
 
 #include "fdf.h"
 
+static void					size_max_z_to_min_z(t_a *a)
+{
+	if (a->e.z_min < 0)
+		a->e.distance_z = a->e.z_max - a->e.z_min;
+	else if (a->e.z_min >= 0)
+		a->e.distance_z = a->e.z_max + a->e.z_min;
+	put_color(a);
+}
+
 void						size_z_max_min(t_a *a)
 {
 	int						y;
@@ -53,15 +62,6 @@ void						ft_modif_z(t_a *a, int keycode)
 	ft_print_to_image_bresenham(a);
 }
 
-void						size_max_z_to_min_z(t_a *a)
-{
-	if (a->e.z_min < 0)
-		a->e.distance_z = a->e.z_max - a->e.z_min;
-	else if (a->e.z_min >= 0)
-		a->e.distance_z = a->e.z_max + a->e.z_min;
-	put_color(a);
-}
-
 int							recover_point(t_a *a, int x, int y, char c)
 {
 	int						xx;
@@ -86,4 +86,19 @@ int							recover_point(t_a *a, int x, int y, char c)
 		return (1);
 	}
 	return (0);
+}
+
+void						origin_z(t_a *a)
+{
+	int						y;
+	int						x;
+
+	y = -1;
+	while (++y < a->e.max_y)
+	{
+		x = -1;
+		while (++x < a->e.max_x)
+			a->map[y][x].z = a->map[y][x].zo;
+	}
+	print(a);
 }

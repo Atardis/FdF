@@ -12,25 +12,25 @@
 
 #include "fdf.h"
 
-void	fdf_recover_size_o(t_a *a)
+static void	fdf_recover_size_o(t_a *a)
 {
 	a->e.size_x = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
 	a->e.size_y = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
-void	fdf_recover_size(t_a *a)
+void		fdf_recover_size(t_a *a)
 {
 	a->e.size_xx = (a->map[0][a->e.max_x - 1].x - a->map[0][0].x);
 	a->e.size_yy = (a->map[a->e.max_y - 1][0].y - a->map[0][0].y);
 }
 
-void	fdf_move(t_a *a)
+static void	fdf_move(t_a *a)
 {
 	a->e.move_x = ((a->e.size_xx - a->e.size_x) / 2);
 	a->e.move_y = ((a->e.size_yy - a->e.size_y) / 2);
 }
 
-void	fdf_modif_pos(t_a *a, int keycode)
+void		fdf_modif_pos(t_a *a, int keycode)
 {
 	int y;
 	int x;
@@ -55,7 +55,7 @@ void	fdf_modif_pos(t_a *a, int keycode)
 	ft_print_to_image_bresenham(a);
 }
 
-void	ft_modif_size(t_a *a, int keycode)
+void		ft_modif_size(t_a *a, int keycode)
 {
 	int x;
 	int y;
