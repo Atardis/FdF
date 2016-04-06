@@ -18,9 +18,8 @@ void					print(t_a *a)
 	ft_print_to_image_bresenham(a);
 }
 
-static void				verif_gnl(t_a *a, char **line)
+static void				verif_gnl(t_a *a)
 {
-	free(*line);
 	if (a->e.tmp == -1)
 		ft_error("Reading Failed / Not good given file", a);
 	if (a->e.max_y == 0 || a->e.max_x == 0)
@@ -32,7 +31,6 @@ static void				read_file(t_a *a, char *str, int y, int i)
 {
 	char				*line;
 
-	line = NULL;
 	while ((a->e.tmp = get_next_line(a->e.fd, &line)) > 0)
 	{
 		if (a->e.max_y == 0)
@@ -43,7 +41,8 @@ static void				read_file(t_a *a, char *str, int y, int i)
 		a->e.max_y++;
 		free(line);
 	}
-	verif_gnl(a, &line);
+	free(line);
+	verif_gnl(a);
 	a->map = fonction_creat_struct(a);
 	if ((a->e.fd = open(str, O_RDONLY)) == -1)
 		ft_error("File Not Present / No Rights", a);
@@ -54,7 +53,8 @@ static void				read_file(t_a *a, char *str, int y, int i)
 		send_map_to_struct(a, line, y);
 		free(line);
 	}
-	verif_gnl(a, &line);
+	free(line);
+	verif_gnl(a);
 }
 
 int						main(int argc, char **argv)

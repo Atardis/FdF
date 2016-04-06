@@ -12,7 +12,7 @@
 
 NAME=fdf
 FLAG=-lmlx -framework OpenGL -framework Appkit
-FLAGN=-Wall -Wextra -Werror
+FLAGN=-g -Wall -Wextra -Werror
 
 SRC = 	fdf.c \
 		fdf_color.c \
