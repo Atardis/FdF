@@ -42,6 +42,7 @@ static void				read_file(t_a *a, char *str, int y, int i)
 		free(line);
 	}
 	free(line);
+	while(1);
 	verif_gnl(a);
 	a->map = fonction_creat_struct(a);
 	if ((a->e.fd = open(str, O_RDONLY)) == -1)

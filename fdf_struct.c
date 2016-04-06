@@ -39,7 +39,10 @@ t_map				**fonction_creat_struct(t_a *a)
 	int				x;
 
 	if (!(a->map = (t_map **)malloc(sizeof(t_map *) * a->e.max_y)))
+	{
+		free(a->map);
 		ft_error("Malloc has Failed for the struct Y", a);
+	}
 	y = -1;
 	while (++y < a->e.max_y)
 	{
