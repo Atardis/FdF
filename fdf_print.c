@@ -36,16 +36,14 @@ void		ft_print_to_image_b_while(t_a *a, int x, int y)
 	{
 		if (a->map[y][x].z < a->map[y][x + 1].z)
 			ligne(a, a->map[y][x + 1].color);
-		else if (a->map[y][x].z > a->map[y][x + 1].z ||
-			a->map[y][x].z == a->map[y][x + 1].z)
+		else
 			ligne(a, a->map[y][x].color);
 	}
 	if ((recover_point(a, x, y, 'y')) > 0)
 	{
 		if (a->map[y][x].z < a->map[y + 1][x].z)
 			ligne(a, a->map[y + 1][x].color);
-		else if (a->map[y][x].z > a->map[y + 1][x].z ||
-			a->map[y][x].z == a->map[y + 1][x].z)
+		else
 			ligne(a, a->map[y][x].color);
 	}
 }

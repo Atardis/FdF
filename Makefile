@@ -14,21 +14,22 @@ NAME=fdf
 FLAG=-lmlx -framework OpenGL -framework Appkit
 FLAGN=-Wall -Wextra -Werror
 
-SRC = 	main.c \
-		fdf_print.c \
-		fdf_struct.c \
-		fdf_modif.c \
+SRC = 	fdf.c \
 		fdf_color.c \
+		fdf_image.c \
 		fdf_key.c \
+		fdf_modif.c \
 		fdf_others.c \
-		fdf_image.c
+		fdf_print.c \
+		fdf_struct.c
+
 
 all: $(NAME)
 
 $(NAME): $(SRC)
 	@make -C libft
 	@echo "\033[33;32m|\033[31m Compilation de la libft\t\t\033[33;32m | OK |"
-	@gcc -o $(NAME) $(SRC) libft/libft.a
+	@gcc -o $(NAME) $(SRC) $(FLAG) $(FLAGN) libft/libft.a
 	@echo "\033[33;32m|\033[31m Compilation du programme Fdf\t\t\033[33;32m | OK |"
 	@echo "\033[33;31m-----------------------------------------------"
 	@echo "\033[33;32m|\033[33;32m The \033[31mfdf \033[33;32mfile is create\t\t\033[33;32m | OK |"

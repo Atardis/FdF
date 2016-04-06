@@ -65,13 +65,15 @@ static void			verif_caract(t_a *a, char *str)
 	while (str[++i])
 	{
 		if (str[i] == '-' && str[i + 1] == '-')
-			ft_error("Probleme de Caractere dans la map (-)", a);
+			ft_error("Problem Of Character In The Map (-)", a);
 		if (str[i] == '+' && str[i + 1] == '+')
-			ft_error("Probleme de Caractere dans la map (+)", a);
-		if (str[i] != '-' && str[i] != ' ' && !(str[i] >= '0' && str[i] <= '9') && 
-			!(str[i] >= 'A' && str[i] <= 'F') && str[i] != ',' && str[i] != 'x' && str[i] != '+')
-			ft_error("Caractere Inconnu", a);
+			ft_error("Problem Of Character In The Map (+)", a);
+		if (str[i] != '-' && str[i] != ' ' && !(str[i] >= '0' && str[i] <= '9')
+			&& !(str[i] >= 'A' && str[i] <= 'F')
+			&& str[i] != ',' && str[i] != 'x' && str[i] != '+')
+			ft_error("Unknown Character", a);
 	}
+	a->e.verif = 1;
 }
 
 void				send_map_to_struct(t_a *a, char *str, int y)

@@ -16,10 +16,13 @@ void		ft_error(char *str, t_a *a)
 {
 	a->e.tmp = 0;
 	ft_putendl(str);
-	mlx_clear_window(a->e.mlx, a->e.win);
-	mlx_destroy_window(a->e.mlx, a->e.win);
-	free(a->e.mlx);
-	free(a->map);
+	if (a->map != NULL && a->e.verif != 0)
+	{
+		mlx_clear_window(a->e.mlx, a->e.win);
+		mlx_destroy_window(a->e.mlx, a->e.win);
+		free(a->e.mlx);
+		free(a->map);
+	}
 	exit(1);
 }
 
@@ -28,7 +31,7 @@ void		fdf_new_image(t_a *a)
 	a->e.img = mlx_new_image(a->e.mlx, MAX_X, MAX_Y);
 	a->e.data = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.sl, &a->e.ed);
 	if (a->e.data == NULL)
-		ft_error("probleme get_data", a);
+		ft_error("Problem of Get_Data", a);
 	a->e.bpp /= 8;
 	if (a->e.background < 0)
 		ft_background(a);
@@ -49,7 +52,5 @@ void		init(t_a *a)
 	a->e.background = 1;
 	a->e.info = -1;
 	a->e.iso = -1;
-	a->e.max_x = 0;
-	a->e.max_y = 0;
 	fdf_new_image(a);
 }

@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-void		put_color(t_a *a)
+void			put_color(t_a *a)
 {
-	int		y;
-	int		x;
+	int			y;
+	int			x;
 
 	y = -1;
 	while (++y < a->e.max_y)
@@ -26,10 +26,10 @@ void		put_color(t_a *a)
 	}
 }
 
-void		ft_background(t_a *a)
+void			ft_background(t_a *a)
 {
-	int		y;
-	int		x;
+	int			y;
+	int			x;
 
 	y = -1;
 	while (++y < MAX_Y)
@@ -40,9 +40,9 @@ void		ft_background(t_a *a)
 	}
 }
 
-int			localisation_color(t_a *a, int z)
+int				localisation_color(t_a *a, int z)
 {
-	double	r;
+	double		r;
 
 	r = a->e.distance_z / 10;
 	if (z >= a->e.z_min && z < (a->e.z_min + (r * 1)))
@@ -68,12 +68,30 @@ int			localisation_color(t_a *a, int z)
 	return (0xFFFFFF);
 }
 
-void		ft_put_info(t_a *a)
+static void		ft_put_info_2(t_a *a)
+{
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 100, 0xFFFFFF, a->e.str);
+	a->e.str = "| Hauteur Moins  = Touche -/_     |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 120, 0xFFFFFF, a->e.str);
+	a->e.str = "| Deplacement    = Touche < ^ > v |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 140, 0xFFFFFF, a->e.str);
+	a->e.str = "| Changer l'ISO  = Touche T       |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, a->e.str);
+	a->e.str = "| Intervertir Z  = Touche R       |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 180, 0xFFFFFF, a->e.str);
+	a->e.str = "| Sortir du FDF  = Touche Esc     |";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 200, 0xFFFFFF, a->e.str);
+	a->e.str = "-----------------------------------";
+	mlx_string_put(a->e.mlx, a->e.win, 1565, 220, 0xFFFFFF, a->e.str);
+}
+
+void			ft_put_info(t_a *a)
 {
 	a->e.str = "Information touche I (on/off)";
 	mlx_string_put(a->e.mlx, a->e.win, 1590, 5, RAZER, a->e.str);
 	if (a->e.info > 0)
 	{
+		mlx_string_put(a->e.mlx, a->e.win, 20, 5, YELLOW, a->e.name);
 		a->e.str = "-----------------------------------";
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 25, 0xFFFFFF, a->e.str);
 		a->e.str = "| Zoom In        = Touche +       |";
@@ -83,18 +101,6 @@ void		ft_put_info(t_a *a)
 		a->e.str = "| Background     = Touche B       |";
 		mlx_string_put(a->e.mlx, a->e.win, 1565, 80, 0xFFFFFF, a->e.str);
 		a->e.str = "| Hauteur Plus   = Touche +/=     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 100, 0xFFFFFF, a->e.str);
-		a->e.str = "| Hauteur Moins  = Touche -/_     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 120, 0xFFFFFF, a->e.str);
-		a->e.str = "| Deplacement    = Touche < ^ > v |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 140, 0xFFFFFF, a->e.str);
-		a->e.str = "| Changer l'ISO  = Touche T       |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 160, 0xFFFFFF, a->e.str);
-		a->e.str = "| Intervertir Z  = Touche T       |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 180, 0xFFFFFF, a->e.str);
-		a->e.str = "| Sortir du FDF  = Touche Esc     |";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 200, 0xFFFFFF, a->e.str);
-		a->e.str = "-----------------------------------";
-		mlx_string_put(a->e.mlx, a->e.win, 1565, 220, 0xFFFFFF, a->e.str);
+		ft_put_info_2(a);
 	}
 }

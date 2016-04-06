@@ -60,6 +60,7 @@ typedef struct				s_fdf_map
 
 typedef struct				s_environ
 {
+	char					*name;
 	void					*mlx;
 	void					*win;
 	void					*img;
@@ -90,6 +91,7 @@ typedef struct				s_environ
 	int						background;
 	int						info;
 	int						tmp;
+	int						verif;
 }							t_env;
 
 typedef struct				s_bresenham
